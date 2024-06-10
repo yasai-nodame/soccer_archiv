@@ -2,6 +2,7 @@ import React from 'react'
 import './Home.css'
 import Navbar from '../../components/Navbar/Navbar'
 import soccer from '../../assets/soccer_ball.jpg'
+import MatchesPage from '../MatchesPage'
 
 const Home = () => {
     const matches = [
@@ -28,8 +29,16 @@ const Home = () => {
                 ))}
             </div>
         </div>
+        <div className='pagination-container'>
+            <MatchesPage matches={matches}/>
+        </div>
     </div>
     )
 }
 
 export default Home
+
+// matchesに 日付追加
+// MatchesPageのdivタグを外して、MatchesPage.jsxのスタイルクラス名を使ってCSS適用させてみる。
+// ホーム画面に、サムネイルとタイトルしかないのは寂しいため、境界線をいれて枠組みを作る。
+// 右端に、もしほしいならば、関連動画も掲載させる。
