@@ -6,20 +6,23 @@ import MatchesPage from '../MatchesPage'
 
 const Home = () => {
     const matches = [
-        { date: '2024-6-11', category: 'プレミアリーグ', title: 'チェルシー×アーセナル', thumbnail: soccer},
-        { date: '2024-6-11', category: 'プレミアリーグ', title: 'フラム×リヴァプール', thumbnail: soccer},
-        { date: '2024-6-12', category: 'プレミアリーグ', title: 'マンチェスターシティ×エヴァートン', thumbnail:soccer},
-        { date: '2024-6-12', category: 'FAカップ', title: 'レスターシティ×トッテナム', thumbnail:soccer},
-        { date: '2024-6-13', category: 'プレミアリーグ', title: 'ウルブス×マンチェスターユナイテッド', thumbnail:soccer},
-        { date: '2024-6-13', category: 'FAカップ', title: 'ボーンマス×ノッティンガムフォレスト', thumbnail:soccer},
+        { date: '2024-6-11', category: 'プレミアリーグ', title: 'チェルシー×アーセナル', thumbnail: soccer, link:'ページ遷移'},
+        { date: '2024-6-11', category: 'プレミアリーグ', title: 'フラム×リヴァプール', thumbnail: soccer, link:'ページ遷移'},
+        { date: '2024-6-12', category: 'プレミアリーグ', title: 'マンチェスターシティ×エヴァートン', thumbnail:soccer, link:'ページ遷移'},
+        { date: '2024-6-12', category: 'FAカップ', title: 'レスターシティ×トッテナム', thumbnail:soccer, link:'ページ遷移'},
+        { date: '2024-6-13', category: 'プレミアリーグ', title: 'ウルブス×マンチェスターユナイテッド', thumbnail:soccer, link:'ページ遷移'},
+        { date: '2024-6-13', category: 'FAカップ', title: 'ボーンマス×ノッティンガムフォレスト', thumbnail:soccer, link:'ページ遷移'},
         //追加するときは、ここに追加
     ];
 
+    //最新5件取得
+    const latestMatches = matches.slice(-5);
+
     const relatedVideos = [
-        {title: '関連動画1', thumbnail: soccer, url: '#'},
-        {title: '関連動画1', thumbnail: soccer, url: '#'},
-        {title: '関連動画1', thumbnail: soccer, url: '#'},
-        //必要に応じて関連動画を追加
+        {title: '新着動画1', thumbnail: soccer, url: '#'},
+        {title: '新着動画1', thumbnail: soccer, url: '#'},
+        {title: '新着動画1', thumbnail: soccer, url: '#'},
+        //必要に応じて新着動画を追加
     ];
 
     return (
@@ -37,13 +40,17 @@ const Home = () => {
             </div>
         </div>
         <div className='related-videos'>
-            <h2>関連動画</h2>
+            <h2>新着動画</h2>
             <div className='video-list'>
-                {relatedVideos.map((video, index) => (
+                {latestMatches.map((match, index) => (
                     <div key={index} className='video-item'>
-                        <img src={video.thumbnail} alt="" />
-                        <h3>{video.title}</h3>
-                        {/* 必要に応じて動画へのリンクを追加 */}
+                        <img src={match.thumbnail} alt="" />
+                        <div className="video-info">
+                            <p>{`${match.date} ${match.category}`}</p>
+                            <h3>{match.title}</h3>
+                            <h3 style={{cursor: 'pointer' }}>{match.link}</h3>
+                            {/* 必要に応じて動画へのリンクを追加 */}
+                        </div>
                     </div>
                 ))}
             </div>
@@ -58,6 +65,4 @@ const Home = () => {
 export default Home
 
 
-// 右端に、もしほしいならば、関連動画も掲載させる。
-// 新着動画をいい感じに右端に寄せるようにし、境界線を引き、境界線の上にタイトルを表示
-// サムネイルを左に寄せ、右には、日付プレミアリーグor日付 FAカップ　その下に対戦カードのリンクを表示させる。5件まで。
+// 表示領域によって、パーツが被ったりするので、調整させる。
