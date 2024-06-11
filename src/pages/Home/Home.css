@@ -24,9 +24,22 @@
 }
 
 .grid-item {
+    position: relative;
     padding: 80px 10px;
     text-align: center;
     cursor: pointer;
+}
+
+.grid-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    box-sizing: border-box;
 }
 
 .grid-item img {
