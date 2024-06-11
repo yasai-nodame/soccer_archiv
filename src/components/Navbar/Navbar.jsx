@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png'
 import search_icon from '../../assets/search_icon.svg'
 
 const Navbar = () => {
+
     return (
     <div className='navbar'>
         <div className="navbar-left">
