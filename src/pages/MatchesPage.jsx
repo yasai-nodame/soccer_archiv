@@ -11,10 +11,6 @@ const MatchesPage = ({matches}) => {
         setCurrentPage(selected);
     };
 
-    const indexOfLastMatch = (currentPage + 1) * perPage;
-    const indexOfFirstMatch = indexOfLastMatch - perPage;
-    const currentMatches = matches.slice(indexOfFirstMatch, indexOfLastMatch);
-
     return (
     <div>
 
