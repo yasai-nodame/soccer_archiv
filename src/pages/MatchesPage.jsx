@@ -11,9 +11,13 @@ const MatchesPage = ({matches}) => {
         setCurrentPage(selected);
     };
 
+    const indexOfLastMatch = (currentPage + 1) * perPage;
+    const indexOfFirstMatch = indexOfLastMatch - perPage;
+    const currentMatches = matches.slice(indexOfFirstMatch, indexOfLastMatch);
 
     return (
     <div>
+
         <ReactPaginate
             pageCount={Math.ceil(matches.length / perPage)} //ページの総数
             pageRangeDisplayed={5} //表示するページ番号の数
@@ -30,3 +34,4 @@ const MatchesPage = ({matches}) => {
 };
 
 export default MatchesPage
+
