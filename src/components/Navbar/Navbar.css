@@ -8,8 +8,8 @@
     top: 0;
     left: 0;
     color: #e5e5e5;
-    background-image: linear-gradient(180deg, rgba(0,0,0,0.7) 10%, transparent);
     z-index: 1000;
+    transition: transform 0.3s ease;
 }
 
 .navbar-left {
@@ -18,7 +18,7 @@
     gap: 50px;
 }
 
-.navbar-left img {
+.logo {
     width: 90px;
 }
 
@@ -38,7 +38,6 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 5px;
-    max-width: 400px;
 }
 
 .search-box .icons {
@@ -54,35 +53,6 @@
     padding: 5px;
 }
 
-@media (max-width: 600px) {
-    .navbar-left img,
-    .navbar-left ul {
-        display: none;
-    }
-    .search-box {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-@media (min-width: 601px) and (max-width: 1024px) {
-    .navbar-left img,
-    .navbar-left ul {
-        display: none;
-    }
-    .search-box {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-/* デスクトップ用のスタイル */
-@media (min-width: 1025px) {
-    .navbar-left img,
-    .navbar-left ul {
-        display: flex;
-    }
-    .search-box {
-        justify-content: flex-end;
-    }
+.hide {
+    display: none;
 }
