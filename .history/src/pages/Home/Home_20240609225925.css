@@ -1,0 +1,26 @@
+.home {
+    position: relative;
+ 
+}
+
+.banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.grid-item {
+    padding: 16px;
+    text-align: center;
+}
+
+.grid-item img {
+    width: 100px;
+    height: auto;
+}

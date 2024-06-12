@@ -1,0 +1,54 @@
+/* ベースレイアウト */
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .related-videos {
+    grid-column: span 1;
+  }
+  
+  .content {
+    grid-column: span 2;
+  }
+  
+  /* スマホ用のスタイル */
+  @media (max-width: 600px) {
+    .container {
+      grid-template-columns: 1fr;
+    }
+    .navbar {
+      display: none;
+    }
+    .pagination {
+      display: block;
+      text-align: center;
+    }
+  }
+  
+  /* タブレット用のスタイル */
+  @media (min-width: 601px) and (max-width: 1024px) {
+    .container {
+      grid-template-columns: 1fr 1fr;
+    }
+    .navbar {
+      display: none;
+    }
+    .pagination {
+      display: block;
+      text-align: center;
+    }
+  }
+  
+  /* デスクトップ用のスタイル */
+  @media (min-width: 1025px) {
+    .container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .pagination {
+      display: block;
+      text-align: center;
+    }
+  }
+  
