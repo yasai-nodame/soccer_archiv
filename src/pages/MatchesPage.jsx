@@ -13,7 +13,6 @@ const MatchesPage = ({matches}) => {
 
     return (
     <div>
-
         <ReactPaginate
             pageCount={Math.ceil(matches.length / perPage)} //ページの総数
             pageRangeDisplayed={5} //表示するページ番号の数
