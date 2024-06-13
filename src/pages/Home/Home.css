@@ -1,7 +1,8 @@
 .home {
     position: relative;
     background-color: #1c1818;
-    min-height: 100vh;
+    min-height: 100vh; /* 画面の可視領域100%を占める。 つまり、画面を縮小してもその100%が可視領域。 */
+    padding-bottom: 100px;
 }
 
 .navbar {
@@ -19,19 +20,17 @@
     flex-direction: column;
     text-align: center;
     position: relative;
-    width: calc(100% - 340px);
+    width: calc(100% - 300px);
     margin-left: auto;
     margin-right: auto;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 6px;
-    justify-content: center;
     margin: 0 auto;
     max-width: 1000px;
-    text-align: center;
 }
 
 .grid-item {
@@ -51,7 +50,7 @@
     height: 50%;
     border-top: 2px solid #0f0d0d;
     border-left: 2px solid #0f0d0d;
-    box-sizing: border-box;
+    box-sizing: border-box; /* 全ての要素(padding margin含む)を足した値 */
     z-index: 1;
 }
 
@@ -80,9 +79,10 @@
     display: flex;
     justify-content: center;
     position: absolute;
-    bottom: 20px;
+    bottom: 20px; /* 親要素の下端から20px上に配置 */
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* 要素の下に余白を20px */
+    margin-top: 20px; /* 要素の上に余白を20px */
 }
 
 .pagination {
@@ -122,14 +122,14 @@
 .related-videos {
     position: absolute;
     top: 50%;
-    right: 40px;
-    transform: translate(0, -50%);
+    right: 60px;
+    transform: translate(0, -50%); /* 第一引数は水平方向の移動、第二引数は垂直方向の移動 */
     width: 300px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #2c2c2c;
-    z-index: 1000; 
+    z-index: 1000;
 }
 
 .related-videos > h2 {
@@ -145,7 +145,7 @@
 
 .video-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* flexコンテナの幅に収まらなくなった場合に、次の行に折り返される。 */
     justify-content: space-between;
 }
 
@@ -174,39 +174,23 @@
         display: none;
     }
     .related-videos {
-        position: static;
-        width: 100%;
-        transform: none;
+        display: none; 
     }
     .content {
-        width: 70%;
-        float: left;
-    }
-    .pagination-container {
-        position: static;
+        width: 100%; 
+        float: none; 
+        max-width: calc(100% - 40px); 
+        margin-left: auto; 
+        margin-right: auto; 
     }
 
     .grid-item img {
-        width: 120px;  /* サムネイルの幅を小さく */
+        width: 120px;  
     }
 
     .grid-item h3,
     .grid-item h2 {
-        font-size: 0.8em;  /* カテゴリとタイトルのフォントサイズを小さく */
-    }
-
-    .related-videos > h2 {
-        font-size: 20px;  /* 新着動画のタイトルのフォントサイズを小さく */
-    }
-
-    .video-item img {
-        width: 80px;  /* サムネイルの幅を小さく */
-        height: 80px;  /* サムネイルの高さを小さく */
-    }
-
-    .video-info p,
-    .video-info h3 {
-        font-size: 0.8em;  /* 新着動画の情報のフォントサイズを小さく */
+        font-size: 0.8em;  
     }
 }
 
@@ -219,8 +203,7 @@
         display: none;
     }
     .related-videos {
-        width: 100%;
-        transform: none;
+        display: none; 
     }
     .pagination-container {
         position: absolute;
@@ -230,29 +213,17 @@
     .content {
         text-align: center;
         max-width: calc(100% - 320px);
+        margin-left: auto; 
+        margin-right: auto; 
     }
 
     .grid-item img {
-        width: 150px;  /* サムネイルの幅を少し小さく */
+        width: 150px;  
     }
 
     .grid-item h3,
     .grid-item h2 {
-        font-size: 0.9em;  /* カテゴリとタイトルのフォントサイズを少し小さく */
-    }
-
-    .related-videos > h2 {
-        font-size: 22px;  /* 新着動画のタイトルのフォントサイズを少し小さく */
-    }
-
-    .video-item img {
-        width: 90px;  /* サムネイルの幅を少し小さく */
-        height: 90px;  /* サムネイルの高さを少し小さく */
-    }
-
-    .video-info p,
-    .video-info h3 {
-        font-size: 0.9em;  /* 新着動画の情報のフォントサイズを少し小さく */
+        font-size: 0.9em;  
     }
 }
 
@@ -261,10 +232,16 @@
         margin-left: 40px;
     }
     .grid-container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
     .navbar {
         display: none;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1415px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
