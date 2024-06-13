@@ -19,9 +19,9 @@
     flex-direction: column;
     text-align: center;
     position: relative;
-    width: calc(100% - 340px);
-    margin-left: auto;
+    width: 100%;
     margin-right: auto;
+    margin-left: auto;
 }
 
 .grid-container {
@@ -29,7 +29,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 6px;
     justify-content: center;
-    margin: 0 auto;
+    margin: auto;
     max-width: 1000px;
     text-align: center;
 }
@@ -71,18 +71,12 @@
     height: auto;
 }
 
-.grid-item h3,
-.grid-item h2 {
-    font-size: 1em;
-}
-
 .pagination-container {
     display: flex;
     justify-content: center;
     position: absolute;
     bottom: 20px;
     width: 100%;
-    margin-bottom: 20px;
 }
 
 .pagination {
@@ -119,6 +113,14 @@
     color: #ffffff;
 }
 
+.content {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    margin-right: 320px;
+    max-width: calc(100% - 340px);
+    text-align: center;
+}
 .related-videos {
     position: absolute;
     top: 50%;
@@ -166,6 +168,7 @@
     justify-content: center;
 }
 
+
 @media (max-width: 600px) {
     .grid-container {
         grid-template-columns: 1fr;
@@ -178,98 +181,37 @@
         width: 100%;
         transform: none;
     }
-    .content {
-        width: 70%;
-        float: left;
-    }
     .pagination-container {
         position: static;
-    }
-
-    .grid-item img {
-        width: 120px;  /* サムネイルの幅を小さく */
-    }
-
-    .grid-item h3,
-    .grid-item h2 {
-        font-size: 0.8em;  /* カテゴリとタイトルのフォントサイズを小さく */
-    }
-
-    .related-videos > h2 {
-        font-size: 20px;  /* 新着動画のタイトルのフォントサイズを小さく */
-    }
-
-    .video-item img {
-        width: 80px;  /* サムネイルの幅を小さく */
-        height: 80px;  /* サムネイルの高さを小さく */
-    }
-
-    .video-info p,
-    .video-info h3 {
-        font-size: 0.8em;  /* 新着動画の情報のフォントサイズを小さく */
     }
 }
 
 @media (min-width: 601px) and (max-width: 1024px) {
     .grid-container {
         grid-template-columns: 1fr 1fr;
-        margin-bottom: 50px;
     }
     .navbar {
         display: none;
     }
     .related-videos {
+        position: static;
         width: 100%;
         transform: none;
     }
     .pagination-container {
-        position: absolute;
-        bottom: 20px;
-        width: 100%;
+        position: static;
     }
     .content {
         text-align: center;
-        max-width: calc(100% - 320px);
-    }
-
-    .grid-item img {
-        width: 150px;  /* サムネイルの幅を少し小さく */
-    }
-
-    .grid-item h3,
-    .grid-item h2 {
-        font-size: 0.9em;  /* カテゴリとタイトルのフォントサイズを少し小さく */
-    }
-
-    .related-videos > h2 {
-        font-size: 22px;  /* 新着動画のタイトルのフォントサイズを少し小さく */
-    }
-
-    .video-item img {
-        width: 90px;  /* サムネイルの幅を少し小さく */
-        height: 90px;  /* サムネイルの高さを少し小さく */
-    }
-
-    .video-info p,
-    .video-info h3 {
-        font-size: 0.9em;  /* 新着動画の情報のフォントサイズを少し小さく */
     }
 }
 
+
 @media (min-width: 1025px) {
-    .content {
-        margin-left: 40px;
-    }
     .grid-container {
         grid-template-columns: repeat(2, 1fr);
     }
     .navbar {
         display: none;
-    }
-}
-
-@media (max-width: 1024px) {
-    .content {
-        max-width: 100%;
     }
 }

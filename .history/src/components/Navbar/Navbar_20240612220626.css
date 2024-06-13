@@ -1,0 +1,87 @@
+.navbar {
+    width: 100%;
+    padding: 30px 6%;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    font-size: 16px;
+    top: 0;
+    left: 0;
+    color: #e5e5e5;
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.7) 10%, transparent);
+    z-index: 1000;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.logo {
+    width: 90px;
+}
+
+.navbar-left ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.navbar-left ul li {
+    cursor: pointer;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    max-width: 400px;
+}
+
+.search-box .icons {
+    width: 20px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+
+@media (max-width: 600px) {
+    .navbar-left ul {
+        display: none;
+    }
+    .search-box {
+        width: 100%;
+        max-width: none;
+        /* justify-content: center; */
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .navbar-left ul {
+        display: none;
+    }
+    .search-box {
+        width: 100%;
+        max-width: none;
+        /* justify-content: center; */
+    }
+}
+
+/* デスクトップ用のスタイル */
+@media (min-width: 1025px) {
+    .navbar-left ul {
+        display: flex;
+    }
+    .search-box {
+        /* justify-content: flex-end; */
+    }
+}

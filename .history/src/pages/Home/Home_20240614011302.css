@@ -194,20 +194,6 @@
     .grid-item h2 {
         font-size: 0.8em;  /* カテゴリとタイトルのフォントサイズを小さく */
     }
-
-    .related-videos > h2 {
-        font-size: 20px;  /* 新着動画のタイトルのフォントサイズを小さく */
-    }
-
-    .video-item img {
-        width: 80px;  /* サムネイルの幅を小さく */
-        height: 80px;  /* サムネイルの高さを小さく */
-    }
-
-    .video-info p,
-    .video-info h3 {
-        font-size: 0.8em;  /* 新着動画の情報のフォントサイズを小さく */
-    }
 }
 
 @media (min-width: 601px) and (max-width: 1024px) {
@@ -239,20 +225,6 @@
     .grid-item h3,
     .grid-item h2 {
         font-size: 0.9em;  /* カテゴリとタイトルのフォントサイズを少し小さく */
-    }
-
-    .related-videos > h2 {
-        font-size: 22px;  /* 新着動画のタイトルのフォントサイズを少し小さく */
-    }
-
-    .video-item img {
-        width: 90px;  /* サムネイルの幅を少し小さく */
-        height: 90px;  /* サムネイルの高さを少し小さく */
-    }
-
-    .video-info p,
-    .video-info h3 {
-        font-size: 0.9em;  /* 新着動画の情報のフォントサイズを少し小さく */
     }
 }
 
