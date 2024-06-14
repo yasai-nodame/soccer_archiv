@@ -1,7 +1,7 @@
 .home {
     position: relative;
     background-color: #1c1818;
-    min-height: 100vh; /* 画面の可視領域100%を占める。 つまり、画面を縮小してもその100%が可視領域。 */
+    min-height: 100vh; 
     padding-bottom: 100px;
 }
 
@@ -38,6 +38,8 @@
     margin-top: 80px;
     padding: 30px 8px;
     text-align: center;
+    color: white;
+    text-decoration-line: none;
     cursor: pointer;
 }
 
