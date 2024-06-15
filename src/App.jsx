@@ -1,6 +1,6 @@
 import React from 'react'
 import Home from './pages/Home/Home'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import VideoPage from './pages/VideoPage/VideoPage'
 
 const App = () => {
@@ -8,10 +8,11 @@ const App = () => {
     <div>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='video/:id' element={<VideoPage/>} />
+        <Route path='/video/:id' element={<VideoPage/>} />
       </Routes>
     </div>
   )
 }
 
 export default App
+
