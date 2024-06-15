@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import './VideoPage.css';
@@ -30,8 +30,8 @@ const VideoPage = () => {
             <Navbar />
             <div className='video-container'>
                 {video ? (
-                    <video controls>
-                        <source src={video.src} type='video/mp4' />
+                    <video key={video?.src} controls>
+                        <source src={video?.src} type='video/mp4' />
                         お使いのブラウザはvideoタグをサポートしていません
                     </video>
                 ) : (
@@ -46,14 +46,17 @@ const VideoPage = () => {
                     </>
                 )}
             </div>
-            {/* <div className='related-videos horizontal-videos'>
+            <div className='horizontal-videos'>
                 <h2>関連動画</h2>
                 <div className='video-listbox'>
                     {relatedVideos.map((relatedVideo) => (
                         <div key={relatedVideo.id} className='video-itembox'>
-                            <img src={relatedVideo.thumbnail} alt='' />
+                            <img src={relatedVideo.thumbnail} alt='' className='video-thumbnail' />
                             <div className='video-infomation'>
-                                <p>{`${relatedVideo.date} ${relatedVideo.category}`}</p>
+                                <div>
+                                    <p>{relatedVideo.date}</p>
+                                    <p>{relatedVideo.category}</p>
+                                </div>
                                 <h3>{relatedVideo.title}</h3>
                                 <Link to={`/video/${relatedVideo.id}`} style={{ cursor: 'pointer', color: 'white' }}>
                                     詳細を見る
@@ -62,7 +65,7 @@ const VideoPage = () => {
                         </div>
                     ))}
                 </div>
-            </div> */}
+            </div>
         </div>
     );
 };
