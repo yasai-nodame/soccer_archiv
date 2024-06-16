@@ -1,0 +1,128 @@
+.video-page {
+    background-color: #1c1818;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px auto;
+    margin-top: 150px;
+    max-width: 800px;
+    background-color: #2e2b2b;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+.navbar {
+    background-color: black;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+}
+
+.horizontal-videos .video-listbox {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+}
+
+.video-itembox {
+    display: flex;
+    align-items: center;
+    min-width: 400px;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.video-thumbnail {
+    width: 50px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.video-infomation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.video-meta {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.video-meta p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .horizontal-videos .video-listbox {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .video-itembox {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .video-thumbnail {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 769px) {
+    .horizontal-videos .video-listbox {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .video-itembox {
+        width: calc(25% - 15px);
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 996px) {
+    .horizontal-videos .video-listbox {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    .video-itembox {
+        width: calc(25% - 10px);
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 8px;
+    }
+}

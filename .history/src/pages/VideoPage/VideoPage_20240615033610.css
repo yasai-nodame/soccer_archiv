@@ -1,0 +1,49 @@
+.video-listbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.video-itembox {
+    width: calc(20% - 20px); /* 横に5つ並ぶための幅 */
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-itembox img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+
+.video-infomation {
+    padding: 10px;
+}
+
+@media (max-width: 1200px) {
+    .video-itembox {
+        width: calc(25% - 20px); /* 横に4つ並ぶための幅 */
+    }
+}
+
+@media (max-width: 992px) {
+    .video-itembox {
+        width: calc(33.33% - 20px); /* 横に3つ並ぶための幅 */
+    }
+}
+
+@media (max-width: 768px) {
+    .video-itembox {
+        width: calc(50% - 20px); /* 横に2つ並ぶための幅 */
+    }
+}
+
+@media (max-width: 576px) {
+    .video-itembox {
+        width: 100%; /* 1列に並べるための幅 */
+    }
+}

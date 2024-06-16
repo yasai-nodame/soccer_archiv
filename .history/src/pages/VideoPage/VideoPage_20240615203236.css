@@ -1,0 +1,71 @@
+.video-page {
+    padding: 20px;
+}
+
+.video-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.horizontal-videos {
+    margin-top: 20px;
+}
+
+.horizontal-videos .video-listbox {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+}
+
+.video-itembox {
+    display: flex;
+    align-items: center;
+    min-width: 300px; /* 必要に応じて調整 */
+    background-color: #222; /* 背景色を必要に応じて調整 */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.video-thumbnail {
+    width: 100px; /* サムネイルの幅を小さく */
+    height: auto;
+    margin-right: 10px;
+}
+
+.video-infomation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.video-meta {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.video-meta p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .horizontal-videos .video-listbox {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .video-itembox {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .video-thumbnail {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}

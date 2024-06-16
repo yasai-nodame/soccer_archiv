@@ -1,0 +1,47 @@
+.video-page {
+    padding: 20px;
+}
+
+.video-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.related-videos {
+    margin-top: 20px;
+}
+
+.horizontal-videos .video-listbox {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+}
+
+.video-itembox {
+    min-width: 200px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-itembox img {
+    width: 100%;
+    height: auto;
+}
+
+.video-infomation {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .horizontal-videos .video-listbox {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
