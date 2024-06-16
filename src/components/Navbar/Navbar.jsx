@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import logo from '../../assets/logo.png';
 import search_icon from '../../assets/search_icon.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Navbar = ({matches}) => {
+const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -40,9 +39,6 @@ const Navbar = ({matches}) => {
         };
     }, []);
 
-    const handlePremierLeagueClick = () => {
-        navigate('/premier-league', {state: {matches}});
-    };
 
     return (
         <div className={`navbar ${isScrolled ? 'hide' : ''}`}>
@@ -56,9 +52,11 @@ const Navbar = ({matches}) => {
                             <Link to="/" style={{color: '#fff', textDecoration: 'none'}}>ホーム</Link>
                         </li>
                         <li style={{ color: '#fff' }}>
-                            <span onClick={handlePremierLeagueClick}>プレミアリーグ</span>
+                            <Link to="/premier-league-page" style={{color: '#fff', textDecoration: 'none'}}>プレミアリーグ</Link>
                         </li>
-                        <li style={{ color: '#fff' }}>FAカップ</li>
+                        <li style={{ color: '#fff' }}>
+                            <Link to="/fa-cup-page" style={{color: '#fff', textDecoration: 'none'}}>FAカップ</Link>
+                        </li>
                     </ul>
                 )}
             </div>
