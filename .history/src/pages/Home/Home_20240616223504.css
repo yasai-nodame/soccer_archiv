@@ -185,7 +185,7 @@
         display: none; 
     }
     .content {
-        width: 100%; 
+        width: 150%; 
         float: none; 
         max-width: calc(100% - 40px); 
         margin-left: auto; 

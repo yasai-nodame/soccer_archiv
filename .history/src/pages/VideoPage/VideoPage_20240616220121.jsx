@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import './VideoPage.css';
+import soccer from '../../assets/soccer_ball.jpg';
 import { Link } from 'react-router-dom';
 
 const videoData = {

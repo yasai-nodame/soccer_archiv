@@ -76,7 +76,6 @@
 .grid-item h2 {
     font-size: 1em;
 }
-
 .grid-item:hover{
     transform: translateY(-5px);
 }
@@ -158,8 +157,6 @@
 .video-item {
     display: flex;
     margin-bottom: 10px;
-    border-radius: 5px;
-    background-color: #3a3535;
 }
 
 .video-item img {

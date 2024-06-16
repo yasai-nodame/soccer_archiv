@@ -77,10 +77,6 @@
     font-size: 1em;
 }
 
-.grid-item:hover{
-    transform: translateY(-5px);
-}
-
 .pagination-container {
     display: flex;
     justify-content: center;
@@ -158,8 +154,6 @@
 .video-item {
     display: flex;
     margin-bottom: 10px;
-    border-radius: 5px;
-    background-color: #3a3535;
 }
 
 .video-item img {

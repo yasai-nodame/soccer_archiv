@@ -1,6 +1,7 @@
 import React from 'react'
 import './Home.css'
 import Navbar from '../../components/Navbar/Navbar'
+import soccer from '../../assets/soccer_ball.jpg'
 import MatchesPage from '../MatchesPage'
 import { Link } from 'react-router-dom'
 

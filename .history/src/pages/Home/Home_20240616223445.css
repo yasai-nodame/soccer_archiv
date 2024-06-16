@@ -181,9 +181,9 @@
     .navbar {
         display: none;
     }
-    .related-videos {
+    /* .related-videos {
         display: none; 
-    }
+    } */
     .content {
         width: 100%; 
         float: none; 

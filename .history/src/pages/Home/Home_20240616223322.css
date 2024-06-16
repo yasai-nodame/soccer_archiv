@@ -158,8 +158,7 @@
 .video-item {
     display: flex;
     margin-bottom: 10px;
-    border-radius: 5px;
-    background-color: #3a3535;
+    padding: 10px;
 }
 
 .video-item img {
