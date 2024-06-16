@@ -15,7 +15,7 @@ const PremierLeague = ({ matches }) => {
                     {matches.map((match) => {
                         if (match.category === 'プレミアリーグ') {
                             return (
-                                <Link key={match.category} to={`/video/${match.id}`} className='premier-grid-item' data-date={match.date}>
+                                <Link key={match.id} to={`/video/${match.id}`} className='premier-grid-item' data-date={match.date}>
                                     <img src={match.thumbnail} alt={match.title} />
                                     <h3>{match.category}</h3>
                                     <h2>{match.title}</h2>
