@@ -32,3 +32,7 @@ const App = () => {
 }
 
 export default App
+
+
+// 検索機能をfirebaseによって、可能にする。
+// pagenationで、2ページ目、3ページ目を開けるようにする。
