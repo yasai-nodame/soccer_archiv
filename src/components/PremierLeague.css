@@ -18,6 +18,15 @@
     margin-right: auto;
 }
 
+
+.premier-league-title {
+    background-color: #3a3535;
+    padding: 10px;
+    margin-top: 80px;
+    color: white;
+    border-radius: 5px;
+}
+
 .premier-grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -139,25 +148,4 @@
     .premier-content {
         max-width: 100%;
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.premier-league-title {
-    background-color: #3a3535;
-    padding: 10px;
-    margin-top: 80px;
-    color: white;
-    border-radius: 5px;
 }
