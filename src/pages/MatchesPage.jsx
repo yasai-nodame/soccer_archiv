@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactPaginate from 'react-paginate';
 
 const MatchesPage = ({ matches, onPageChange }) => {
@@ -6,7 +6,7 @@ const MatchesPage = ({ matches, onPageChange }) => {
 
     // ページが変更されたときのハンドラー
     const handlePageChange = ({ selected }) => {
-        onPageChange({ selected });
+        onPageChange({selected});
     };
 
     return (
