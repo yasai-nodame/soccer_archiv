@@ -18,8 +18,12 @@ const Home = ({ matches }) => {
     };
 
     // 現在のページに表示するデータを取得
-    const offset = currentPage * perPage; //現在のページが0番目なら　0×9で　0番目を先頭 1ページなら 9番目が先頭
-    const currentMatches = matches.slice(offset, offset + perPage); //0ページなら　0~9個の要素 1ページなら 9~18番目の要素
+    const offset = currentPage * perPage; 
+    const currentMatches = matches.slice(offset, offset + perPage); 
+    console.log('current page:', currentPage);
+    console.log('offset:', offset);
+    console.log('currentMatches:', currentMatches);
+
 
     return (
         <div className='home'>
