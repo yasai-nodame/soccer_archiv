@@ -15,6 +15,19 @@ const VideoPage = ({relatedVideos}) => {
     const { id } = useParams();
     const video = videoData[id];
 
+    // 関連動画をシャッフルして表示
+    const shuffleArray =  (array) => {
+        for (let i=array.length - 1; i>0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    const shuffledVideos = shuffleArray([...relatedVideos]); // reletedVideosをコピーして新しい配列をshuffleVideosに代入
+    const limitedRelatedVideos = shuffledVideos.slice(0, 16);
+
+
     return (
         <div className='video-page'>
             <Navbar />
@@ -39,7 +52,7 @@ const VideoPage = ({relatedVideos}) => {
             <div className='horizontal-videos'>
                 <h2>関連動画</h2>
                 <div className='video-listbox'>
-                    {relatedVideos.map((relatedVideo) => (
+                    {limitedRelatedVideos.map((relatedVideo) => (
                         <div key={relatedVideo.id} className='video-itembox'>
                             <img src={relatedVideo.thumbnail} alt='' className='video-thumbnail' />
                             <div className='video-infomation'>
