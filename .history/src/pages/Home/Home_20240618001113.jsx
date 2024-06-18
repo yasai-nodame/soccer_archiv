@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Home.css';
 import Navbar from '../../components/Navbar/Navbar';
 import MatchesPage from '../MatchesPage';
@@ -13,25 +13,43 @@ const Home = ({ matches }) => {
 
     // ページが変更されたときのハンドラー
     const handlePageChange = ({ selected }) => {
+        console.log('selected page:', selected);
         setCurrentPage(selected);
-        window.scrollTo(0, 0);
     };
 
     // 現在のページに表示するデータを取得
-    const offset = currentPage * perPage; //現在のページが0番目なら　0×9で　0番目を先頭 1ページなら 9番目が先頭
-    const currentMatches = matches.slice(offset, offset + perPage); //0ページなら　0~9個の要素 1ページなら 9~18番目の要素
+    const offset = currentPage * perPage;
+    const currentMatches = matches.slice(offset, offset + perPage);
+
+    // ページング時に表示する最大数の要素を計算
+    const maxItemsPerPage = perPage;
+
+    // 空の要素を追加するための関数
+    const addEmptyItemsIfNeeded = (items) => {
+        const emptyItemCount = maxItemsPerPage - items.length;
+        if (emptyItemCount > 0) {
+            for (let i = 0; i < emptyItemCount; i++) {
+                items.push(null); // ダミーの空の要素を追加
+            }
+        }
+        return items;
+    };
 
     return (
         <div className='home'>
             <Navbar />
             <div className='content'>
                 <div className='grid-container'>
-                    {currentMatches.map((match) => (
-                        <Link key={match.id} to={`/video/${match.id}`} className='grid-item' data-date={match.date}>
-                            <img src={match.thumbnail} alt='' />
-                            <h3>{match.category}</h3>
-                            <h2>{match.title}</h2>
-                        </Link>
+                    {addEmptyItemsIfNeeded(currentMatches).map((match, index) => (
+                        match ? (
+                            <Link key={match.id} to={`/video/${match.id}`} className='grid-item' data-date={match.date}>
+                                <img src={match.thumbnail} alt='' />
+                                <h3>{match.category}</h3>
+                                <h2>{match.title}</h2>
+                            </Link>
+                        ) : (
+                            <div key={index} className='grid-item empty'></div>
+                        )
                     ))}
                 </div>
             </div>

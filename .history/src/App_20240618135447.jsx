@@ -26,7 +26,7 @@ const App = () => {
     {id:15, date: '2024-6-15', category: 'プレミアリーグ', title:'フラム×ノッティンガムフォレスト', matchday: '第2節', thumbnail:soccer},
     {id:16, date: '2024-6-15', category: 'プレミアリーグ', title:'バーンリー×チェルシー', matchday: '第2節', thumbnail:soccer},
     {id:17, date: '2024-6-15', category: 'プレミアリーグ', title:'ウエストハム×ニューカッスル', matchday: '第2節', thumbnail:soccer},
-    {id:18, date: '2024-6-15', category: 'プレミアリーグ', title:'クリスタルパレス×アストンヴィラ', matchday: '第2節', thumbnail:soccer},
+    // {id:18, date: '2024-6-15', category: 'プレミアリーグ', title:'クリスタルパレス×アストンヴィラ', matchday: '第2節', thumbnail:soccer},
     // 追加するときは、ここに追加
     // FAカップは　matchdayを定義しない。
 ];
@@ -48,4 +48,3 @@ export default App
 
 // 検索機能をfirebaseによって、可能にする。
 // pagenationで、2ページ目、3ページ目を開けるようにする。
-// ホームの要素をクリックして、video:idページに遷移したときに、下に表示される関連動画を16個までしか表示しないようにする。

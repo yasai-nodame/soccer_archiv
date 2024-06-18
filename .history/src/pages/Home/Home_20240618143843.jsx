@@ -14,7 +14,6 @@ const Home = ({ matches }) => {
     // ページが変更されたときのハンドラー
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
-        window.scrollTo(0, 0);
     };
 
     // 現在のページに表示するデータを取得

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Home.css';
 import Navbar from '../../components/Navbar/Navbar';
 import MatchesPage from '../MatchesPage';
@@ -14,7 +14,6 @@ const Home = ({ matches }) => {
     // ページが変更されたときのハンドラー
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
-        window.scrollTo(0, 0);
     };
 
     // 現在のページに表示するデータを取得

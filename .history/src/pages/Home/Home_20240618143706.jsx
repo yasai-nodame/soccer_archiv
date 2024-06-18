@@ -14,12 +14,19 @@ const Home = ({ matches }) => {
     // ページが変更されたときのハンドラー
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
-        window.scrollTo(0, 0);
     };
 
     // 現在のページに表示するデータを取得
     const offset = currentPage * perPage; //現在のページが0番目なら　0×9で　0番目を先頭 1ページなら 9番目が先頭
     const currentMatches = matches.slice(offset, offset + perPage); //0ページなら　0~9個の要素 1ページなら 9~18番目の要素
+
+    useEffect(() => {
+        const gridItems = document.querySelectorAll('.grid-item');
+        gridItems.forEach(item => {
+            item.style.marginTop = '80px';
+            item.style.padding = '30px 8px';
+        });
+    }, [currentPage]);
 
     return (
         <div className='home'>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Home.css';
 import Navbar from '../../components/Navbar/Navbar';
 import MatchesPage from '../MatchesPage';
@@ -6,20 +6,20 @@ import { Link } from 'react-router-dom';
 
 const Home = ({ matches }) => {
     const [currentPage, setCurrentPage] = useState(0);
-    const perPage = 9;
+    const perPage = 9; 
 
     // 最新5件取得
     const latestMatches = matches.slice(-5);
 
     // ページが変更されたときのハンドラー
     const handlePageChange = ({ selected }) => {
-        setCurrentPage(selected);
-        window.scrollTo(0, 0);
+        console.log('selected page:', selected);
+        setCurrentPage(selected + 1);
     };
 
     // 現在のページに表示するデータを取得
-    const offset = currentPage * perPage; //現在のページが0番目なら　0×9で　0番目を先頭 1ページなら 9番目が先頭
-    const currentMatches = matches.slice(offset, offset + perPage); //0ページなら　0~9個の要素 1ページなら 9~18番目の要素
+    const offset = currentPage * perPage;
+    const currentMatches = matches.slice(offset, offset + perPage);
 
     return (
         <div className='home'>
