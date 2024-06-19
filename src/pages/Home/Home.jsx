@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Home = ({ matches }) => {
     const [currentPage, setCurrentPage] = useState(0);
-    const perPage = 9;
+    const [itemsPerPage, setItemsPerPage] = useState(9);
 
     // 最新5件取得
     const latestMatches = matches.slice(-5);
@@ -17,13 +17,26 @@ const Home = ({ matches }) => {
         window.scrollTo(0, 0);
     };
 
-    // 現在のページに表示するデータを取得
-    const offset = currentPage * perPage; 
-    const currentMatches = matches.slice(offset, offset + perPage); 
-    console.log('current page:', currentPage);
-    console.log('offset:', offset);
-    console.log('currentMatches:', currentMatches);
+    useEffect(() => {
+        const updateItemsPerPage = () => {
+            if (window.innerWidth < 600) {
+                setItemsPerPage(6);
+            } else if (window.innerWidth < 1415) {
+                setItemsPerPage(8);
+            } else {
+                setItemsPerPage(9);
+            }
+        };
 
+        window.addEventListener('resize', updateItemsPerPage);
+        updateItemsPerPage();
+
+        return () => window.removeEventListener('resize', updateItemsPerPage);
+    }, []);
+
+    // 現在のページに表示するデータを取得
+    const offset = currentPage * itemsPerPage; 
+    const currentMatches = matches.slice(offset, offset + itemsPerPage);
 
     return (
         <div className='home'>
@@ -64,3 +77,4 @@ const Home = ({ matches }) => {
 };
 
 export default Home;
+
