@@ -27,10 +27,9 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    margin: 0 auto;
-    max-width: 1000px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    justify-content: center;
 }
 
 .grid-item {
@@ -41,6 +40,12 @@
     color: white;
     text-decoration-line: none;
     cursor: pointer;
+}
+
+/* grid-itemで1ページ目を2,3ページ目に統一する */
+.grid-item {
+    width: 266.2px;
+    height: 297px;
 }
 
 .grid-item::before {
@@ -193,12 +198,12 @@
     }
 
     .grid-item img {
-        width: 120px;  
+        width: 150px;  
     }
 
     .grid-item h3,
     .grid-item h2 {
-        font-size: 0.8em;  
+        font-size: 0.9em;  
     }
 }
 
@@ -229,13 +234,9 @@
         width: 150px;  
     }
 
-    .grid-item h3,
-    .grid-item h2 {
-        font-size: 0.9em;  
-    }
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1100px) {
     .content {
         margin-left: 40px;
     }
@@ -257,4 +258,15 @@
     .content {
         max-width: 100%;
     }
+    .grid-item img {
+        width: 180px;  
+    }
 }
+
+@media (min-width: 1025px) and (max-width: 1100px) {
+    .related-videos {
+        display: none;
+    }
+    
+}
+
