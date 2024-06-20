@@ -34,6 +34,15 @@ const App = () => {
     {id:23, date: '2024-6-15', category: 'プレミアリーグ', title:'ウエストハム×ニューカッスル', matchday: '第2節', thumbnail:soccer},
     {id:24, date: '2024-6-15', category: 'プレミアリーグ', title:'クリスタルパレス×アストンヴィラ', matchday: '第2節', thumbnail:soccer},
     {id:25, date: '2024-6-15', category: 'プレミアリーグ', title:'クリスタルパレス×アストンヴィラ', matchday: '第2節', thumbnail:soccer},
+    {id:26, date: '2024-6-15', category: 'FAカップ', title:'ウエストハム×ニューカッスル', thumbnail:soccer},
+    {id:27, date: '2024-6-15', category: 'FAカップ', title:'クリスタルパレス×アストンヴィラ', thumbnail:soccer},
+    {id:28, date: '2024-6-15', category: 'FAカップ', title:'トッテナム×ルートンタウン', thumbnail:soccer},
+    {id:29, date: '2024-6-15', category: 'FAカップ', title:'リヴァプール×ボーンマス', thumbnail:soccer},
+    {id:30, date: '2024-6-15', category: 'FAカップ', title:'フラム×ノッティンガムフォレスト', thumbnail:soccer},
+    {id:31, date: '2024-6-15', category: 'FAカップ', title:'バーンリー×チェルシー', thumbnail:soccer},
+    {id:32, date: '2024-6-15', category: 'FAカップ', title:'ウエストハム×ニューカッスル', thumbnail:soccer},
+    {id:33, date: '2024-6-15', category: 'FAカップ', title:'クリスタルパレス×アストンヴィラ', thumbnail:soccer},
+    {id:34, date: '2024-6-15', category: 'FAカップ', title:'クリスタルパレス×アストンヴィラ', thumbnail:soccer},
     // 追加するときは、ここに追加
     // FAカップは　matchdayを定義しない。
 ];
@@ -54,4 +63,3 @@ export default App
 
 
 // 検索機能をfirebaseによって、可能にする。
-// FAカップカテゴリで、home.jsx同様　要素をレスポンシブに対応させる。
