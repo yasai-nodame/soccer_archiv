@@ -43,6 +43,8 @@ const App = () => {
     {id:32, date: '2024-6-15', category: 'FAカップ', title:'ウエストハム×ニューカッスル', thumbnail:soccer},
     {id:33, date: '2024-6-15', category: 'FAカップ', title:'クリスタルパレス×アストンヴィラ', thumbnail:soccer},
     {id:34, date: '2024-6-15', category: 'FAカップ', title:'クリスタルパレス×アストンヴィラ', thumbnail:soccer},
+    {id:35, date: '2024-6-15', category: 'プレミアリーグ', title:'クリスタルパレス×アストンヴィラ', thumbnail:soccer},
+    {id:36, date: '2024-6-15', category: 'プレミアリーグ', title:'クリスタルパレス×アストンヴィラ', thumbnail:soccer},
     // 追加するときは、ここに追加
     // FAカップは　matchdayを定義しない。
 ];
