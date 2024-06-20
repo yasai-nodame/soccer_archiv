@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 
-const MatchesPage = ({ matches, onPageChange }) => {
-    const pageCount = Math.ceil(matches.length / 9);
+const MatchesPage = ({ pageCount, onPageChange, forcePage }) => {
 
     // ページが変更されたときのハンドラー
     const handlePageChange = ({ selected }) => {
@@ -20,6 +19,7 @@ const MatchesPage = ({ matches, onPageChange }) => {
                 disableInitialCallback={true} // 初期コールバックを無効にする
                 previousLabel={'←'}
                 nextLabel={'→'}
+                forcePage={forcePage}
             />
     );
 };
