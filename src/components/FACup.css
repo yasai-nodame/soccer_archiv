@@ -95,12 +95,12 @@
     }
 
     .facup-grid-item img {
-        width: 150px;  
+        width: 170px;  
     }
 
     .facup-grid-item h3,
     .facup-grid-item h2 {
-        font-size: 0.8em;  
+        font-size: 0.9em;  
     }
 }
 
@@ -117,12 +117,7 @@
     }
 
     .facup-grid-item img {
-        width: 150px;  
-    }
-
-    .facup-grid-item h3,
-    .facup-grid-item h2 {
-        font-size: 0.9em;  
+        width: 180px;  
     }
 }
 
