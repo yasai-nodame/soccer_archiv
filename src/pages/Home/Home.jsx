@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 const Home = ({ matches }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(9);
+    const [totalPages, setTotalPages] = useState(0);
 
     // 最新5件取得
     const latestMatches = matches.slice(-5);
@@ -28,11 +29,16 @@ const Home = ({ matches }) => {
             }
         };
 
+        const updateTotalPages = () => {
+            setTotalPages(Math.ceil(matches.length / itemsPerPage));
+        };
+
         window.addEventListener('resize', updateItemsPerPage);
         updateItemsPerPage();
+        updateTotalPages();
 
         return () => window.removeEventListener('resize', updateItemsPerPage);
-    }, []);
+    }, [matches.length, itemsPerPage]);
 
     // 現在のページに表示するデータを取得
     const offset = currentPage * itemsPerPage; 
@@ -70,7 +76,7 @@ const Home = ({ matches }) => {
                 </div>
             </div>
             <div className='pagination-container'>
-                <MatchesPage matches={matches} onPageChange={handlePageChange} />
+                <MatchesPage pageCount={totalPages}  onPageChange={handlePageChange} forcePage={currentPage}/>
             </div>
         </div>
     );
