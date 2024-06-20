@@ -7,6 +7,7 @@ import './FACup.css';
 const FACup = ({ matches }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(9);
+    const [totalPages, setTotalPages] = useState(0);
 
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
@@ -24,8 +25,12 @@ const FACup = ({ matches }) => {
             }
         };
 
+        const fillterdMatches = matches.filter(match => match.category === 'FAカップ');
+        setTotalPages(Math.ceil(fillterdMatches.length / itemsPerPage));
+
         window.addEventListener('resize', updateItemsPerPage);
-    }, []);
+        updateItemsPerPage();
+    }, [matches, itemsPerPage]);
 
     const fillterdMatches = matches.filter(match => match.category === 'FAカップ');
     const offset = currentPage * itemsPerPage;
@@ -47,7 +52,7 @@ const FACup = ({ matches }) => {
                 </div>
             </div>
             <div className='pagination-container'>
-                <MatchesPage matches={matches} onPageChange={handlePageChange}/>
+                <MatchesPage pageCount={totalPages} onPageChange={handlePageChange} forcePage={currentPage}/>
             </div>
         </div>
     );
