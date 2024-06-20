@@ -7,6 +7,7 @@ import MatchesPage from '../pages/MatchesPage';
 const PremierLeague = ({ matches }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(9);
+    const [totalPages, setTotalPages] = useState(0);
 
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
@@ -24,11 +25,14 @@ const PremierLeague = ({ matches }) => {
             }
         };
 
+        const fillterdMatches = matches.filter(match => match.category === 'プレミアリーグ');
+        setTotalPages(Math.ceil(fillterdMatches.length / itemsPerPage));
+
         window.addEventListener('resize', updateItemsPerPage);
         updateItemsPerPage();
 
         return () => window.removeEventListener('resize', updateItemsPerPage);
-    }, []);
+    }, [matches, itemsPerPage]);
 
     const filteredMatches = matches.filter(match => match.category === 'プレミアリーグ');
     const offset = currentPage * itemsPerPage;
@@ -50,7 +54,7 @@ const PremierLeague = ({ matches }) => {
                 </div>
             </div>
             <div className='pagination-container'>
-                <MatchesPage matches={filteredMatches} onPageChange={handlePageChange} />
+                <MatchesPage pageCount={totalPages} onPageChange={handlePageChange} forcePage={currentPage} />
             </div>
         </div>
     );
