@@ -48,7 +48,7 @@ const App = () => {
     // 追加するときは、ここに追加
     // FAカップは　matchdayを定義しない。
 ];
-  
+
   return (
     <div>
       <Routes>
@@ -58,10 +58,8 @@ const App = () => {
         <Route path='/fa-cup-page' element={<FACup matches={matches}/>} />
       </Routes>
     </div>
-  )
-}
+  );
+};
 
 export default App
 
-
-// 検索機能をfirebaseによって、可能にする。
