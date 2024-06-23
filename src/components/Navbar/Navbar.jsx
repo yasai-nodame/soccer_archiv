@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png';
 import search_icon from '../../assets/search_icon.svg';
 import { Link } from 'react-router-dom';
 
+
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
@@ -38,7 +39,6 @@ const Navbar = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
 
     return (
         <div className={`navbar ${isScrolled ? 'hide' : ''}`}>
