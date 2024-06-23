@@ -62,4 +62,4 @@ const uploadMatches = async () => {
     }
 };
 
-uploadMatches();
+// uploadMatches();
