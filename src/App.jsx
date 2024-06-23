@@ -1,12 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Home from './pages/Home/Home'
 import { Routes, Route } from 'react-router-dom'
 import VideoPage from './pages/VideoPage/VideoPage'
 import PremierLeague from './components/PremierLeague'
 import soccer from './assets/soccer_ball.jpg'
 import FACup from './components/FACup'
+import { db } from './firebase'
+import { collection, getDocs } from 'firebase/firestore'
+import { getAuth, signInWithPopup } from 'firebase/auth'
+import { GoogleAuthProvider } from 'firebase/auth/web-extension'
 
 const App = () => {
+  const [matches_value, setMatches_value] = useState([]);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const mathces_valueCollectionRef = collection(db, 'matches');
+    getDocs(mathces_valueCollectionRef).then((querySnapshot) => {
+      setMatches_value(querySnapshot.docs.map((doc) => doc.data()));
+    })
+  }, []);
+
 
   const matches = [
     {id:1, date: '2024-6-11', category: 'プレミアリーグ', title: 'チェルシー×アーセナル', matchday: '第1節', thumbnail: soccer},
