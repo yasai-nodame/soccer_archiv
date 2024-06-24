@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MatchesPage from '../pages/MatchesPage';
 import './FACup.css';
+import spinner from '../assets/spinner.gif'
 
-const FACup = ({ matches }) => {
+const FACup = ({ matches, loading }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(9);
     const [totalPages, setTotalPages] = useState(0);
+    const navigate = useNavigate();
 
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
@@ -36,9 +38,17 @@ const FACup = ({ matches }) => {
     const offset = currentPage * itemsPerPage;
     const currentMatches = fillterdMatches.slice(offset, offset + itemsPerPage);
 
+    const handleFacupPage = () => {
+        setCurrentPage(0);
+        navigate('/fa-cup-page');
+    }
+
     return (
+        loading?<div className='standby-spinner'>
+            <img src={spinner} alt="" />
+        </div>:
         <div className='facup-home'>
-            <Navbar />
+            <Navbar handleFacupPage={handleFacupPage}/>
             <div className='facup-content'>
                 <h2 className='facup-title'>FAカップ</h2>
                 <div className='facup-grid-container'>
