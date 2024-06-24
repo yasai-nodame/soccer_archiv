@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar/Navbar';
-import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar/Navbar'; //navbarをインポートしているため、navbarが子コンポーネント。premierleague.jsxは親コンポーネントとなる。
+import { Link, useNavigate } from 'react-router-dom';
 import './PremierLeague.css';
 import MatchesPage from '../pages/MatchesPage';
+import spinner from '../assets/spinner.gif'
 
-const PremierLeague = ({ matches }) => {
+const PremierLeague = ({ matches, loading }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(9);
     const [totalPages, setTotalPages] = useState(0);
+    const navigate = useNavigate();
+
 
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
@@ -34,13 +37,24 @@ const PremierLeague = ({ matches }) => {
         return () => window.removeEventListener('resize', updateItemsPerPage);
     }, [matches, itemsPerPage]);
 
+    // titleがプレミアリーグの要素を取得し、ウェブサイズに合わせた数ごとに表示させる
     const filteredMatches = matches.filter(match => match.category === 'プレミアリーグ');
     const offset = currentPage * itemsPerPage;
     const currentMatches = filteredMatches.slice(offset, offset + itemsPerPage);
 
+    // プレミアリーグバーを押したら 1ページに戻るようにする
+    const handlePremierLeagueClick = () => {
+        setCurrentPage(0);
+        navigate('/premier-league-page');
+    }
+
     return (
+        loading?<div className='standby-spinner'>
+            <img src={spinner} alt="" />
+        </div>:
         <div className='premier-home'>
-            <Navbar />
+            {/* 親コンポーネントから子コンポーネントにプロップする。*/}
+            <Navbar  handlePremierLeagueClick={handlePremierLeagueClick}/> 
             <div className='premier-content'>
                 <h2 className='premier-league-title'>プレミアリーグ</h2>
                 <div className='premier-grid-container'>
