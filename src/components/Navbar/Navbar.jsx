@@ -5,7 +5,7 @@ import search_icon from '../../assets/search_icon.svg';
 import { Link } from 'react-router-dom';
 
 
-const Navbar = () => {
+const Navbar = ({ handlePremierLeagueClick, handleFacupPage }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
@@ -52,10 +52,10 @@ const Navbar = () => {
                             <Link to="/" style={{color: '#fff', textDecoration: 'none'}}>ホーム</Link>
                         </li>
                         <li style={{ color: '#fff' }}>
-                            <Link to="/premier-league-page" style={{color: '#fff', textDecoration: 'none'}}>プレミアリーグ</Link>
+                            <Link to="/premier-league-page" onClick={handlePremierLeagueClick} style={{color: '#fff', textDecoration: 'none'}}>プレミアリーグ</Link>
                         </li>
                         <li style={{ color: '#fff' }}>
-                            <Link to="/fa-cup-page" style={{color: '#fff', textDecoration: 'none'}}>FAカップ</Link>
+                            <Link to="/fa-cup-page" onClick={handleFacupPage} style={{color: '#fff', textDecoration: 'none'}}>FAカップ</Link>
                         </li>
                     </ul>
                 )}
