@@ -3,8 +3,9 @@ import './Home.css';
 import Navbar from '../../components/Navbar/Navbar';
 import MatchesPage from '../MatchesPage';
 import { Link } from 'react-router-dom';
+import spinner from '../../assets/spinner.gif';
 
-const Home = ({ matches }) => {
+const Home = ({ matches, loading }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(9);
     const [totalPages, setTotalPages] = useState(0);
@@ -45,6 +46,9 @@ const Home = ({ matches }) => {
     const currentMatches = matches.slice(offset, offset + itemsPerPage);
 
     return (
+        loading?<div className='standby-spinner'>
+            <img src={spinner} alt="" />
+        </div>:
         <div className='home'>
             <Navbar />
             <div className='content'>
