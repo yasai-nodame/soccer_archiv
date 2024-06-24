@@ -82,6 +82,18 @@
     transform: translateY(-5px);
 }
 
+.premier-standby-spinner {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.premier-standby-spinner img {
+    width: 60px;
+}
+
 @media (max-width: 600px) {
     .premier-grid-container {
         grid-template-columns: 1fr;
