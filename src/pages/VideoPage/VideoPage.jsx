@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import './VideoPage.css';
 import { Link } from 'react-router-dom';
+import spinner from '../../assets/spinner.gif';
 
 const videoData = {
     1: { src: '/videos/video1.mp4', date: '2024-6-11', title: '第1節 チェルシー×アーセナル' },
@@ -11,7 +12,7 @@ const videoData = {
 };
 
 
-const VideoPage = ({relatedVideos}) => {
+const VideoPage = ({relatedVideos, loading}) => {
     const { id } = useParams();
     const video = videoData[id];
 
@@ -29,6 +30,9 @@ const VideoPage = ({relatedVideos}) => {
 
 
     return (
+        loading?<div className='standby-spinner'>
+            <img src={spinner} alt="" />
+        </div>:
         <div className='video-page'>
             <Navbar />
             <div className='video-container'>
