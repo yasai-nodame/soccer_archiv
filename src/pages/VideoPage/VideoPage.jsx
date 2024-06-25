@@ -5,12 +5,15 @@ import './VideoPage.css';
 import { Link } from 'react-router-dom';
 import spinner from '../../assets/spinner.gif';
 import { getDownloadURL, listAll, ref, getStorage } from 'firebase/storage';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 const VideoPage = ({ relatedVideos, loading }) => {
-    const { id } = useParams();
+    const { id } = useParams(); // idはstringで返している。
     const [videos, setVideos] = useState([]);
     const [currentVideo, setCurrentVideo] = useState(null);
     const [videosLoading, setVideosLoading] = useState(true); //loadingはページが開くまでの間で、videosLoadingは動画が開くまでの間スピナー（待機）画面
+    const [matchDocument, setMatchDocument] = useState(null);
 
     const storage = getStorage();
 
@@ -23,25 +26,40 @@ const VideoPage = ({ relatedVideos, loading }) => {
             const videoPromises = res.items
                 .filter(itemRef => itemRef.name.endsWith('.mp4'))
                 .sort((a, b) => {
-                    const numA = parseInt(a.name.match(/\d+/)[0], 10);
-                    const numB = parseInt(b.name.match(/\d+/)[0], 10);
+                    const numA = parseInt(a.name.match(/\d+/)[0], 10); // \d+は1文字以上の数字にマッチした値を取得。[0]は最初にマッチした数字列を取得。
+                    const numB = parseInt(b.name.match(/\d+/)[0], 10); // parseIntでintにキャスト。 10は10進数を表している。
                     return numA - numB;
                 })
                 .map(async (itemRef) => {
-                    const url = await getDownloadURL(itemRef);
+                    const url = await getDownloadURL(itemRef); //itemRefのダウンロードURLを取得。
                     return { name: itemRef.name, url };
                 });
 
-            const videoURLs = await Promise.all(videoPromises);
-            setVideos(videoURLs);
+            const videoURLs = await Promise.all(videoPromises); // promiseは非同期処理。並列処理が完了するまで待機。非同期だからawaitを使っている。
+            setVideos(videoURLs); //videoURLsには、name:itemRef.name　と　urlのリストが格納されている。
 
-            const matchingVideo = videoURLs.find(v => v.name === `video${id}.mp4`);
+            const matchingVideo = videoURLs.find(v => v.name === `video${id}.mp4`); //nameとidを含んだnameが一致したら currentvideoにセットする
             setCurrentVideo(matchingVideo);
             setVideosLoading(false);
         };
 
         fetchVideos();
     }, [id]);
+
+    // ページIDとドキュメントのIDフィールドが一致したらドキュメント内のtitleとdateを表示させる。 依存配列はidが変動したときなのでidを格納。
+    useEffect(() => {
+        const fetchMatchDocuments = async() => {
+            const querySnapshot = await getDocs(collection(db, 'matches'));
+            const matchDoc = querySnapshot.docs.find(doc => doc.data().id === parseInt(id)); //ドキュメントのIDとuseParamsのidが一致したらセットする
+            if (matchDoc) {
+                setMatchDocument(matchDoc.data());
+            } else {
+                console.log(`Document with id ${id} not found`);
+            }
+        }
+        fetchMatchDocuments();
+    }, [id]);
+
 
     // 関連動画をシャッフル表示
     const shuffleArray = (array) => {
@@ -51,6 +69,7 @@ const VideoPage = ({ relatedVideos, loading }) => {
         }
         return array;
     };
+    
 
     const shuffledVideos = shuffleArray([...relatedVideos]); // relatedVideosをコピーして新しい配列で処理
     const limitedRelatedVideos = shuffledVideos.slice(0, 16);
@@ -75,11 +94,11 @@ const VideoPage = ({ relatedVideos, loading }) => {
                     )}
                 </div>
                 <div className='title-container'>
-                    {currentVideo && (
-                        <>
-                            <h1>{currentVideo.date}</h1>
-                            <h1>{currentVideo.title}</h1>
-                        </>
+                    {matchDocument && (
+                        <div>
+                            <h1>{matchDocument.date}</h1>
+                            <h1>{matchDocument.title}</h1>
+                        </div>
                     )}
                 </div>
                 <div className='horizontal-videos'>
