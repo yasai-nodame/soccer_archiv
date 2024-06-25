@@ -19,10 +19,8 @@ const db = getFirestore(app);
 export { db, auth };
 
 
-// matchesのデータをfirebaseのフィールドに登録していく。
-// 2つの動画をstorageにアップロードして、画像のように、matches_valueにマージさせる。
+
 
 // できれば、storageとdatabaseのルール認証を、個人だけにする。
-// プレミアリーグ・FAカップで、ページが進んでも　プレミア・FAカップボタンを押せばそのカテゴリーのホームに戻るようにする。
 
 //最終的には、navbarで検索アイコン or　enterでfirebaseから検索文字に一致している、タイトルを取得するようにする。
