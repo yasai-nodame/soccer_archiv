@@ -17,6 +17,7 @@ const VideoPage = ({ relatedVideos, loading }) => {
 
     const storage = getStorage();
 
+    // firebaseのstorageに格納されている、videoをリストで取得して、sortし、useParamsのidと一致したvideoをsetCurrentVideoにセットする。
     useEffect(() => {
         const fetchVideos = async () => {
             setVideosLoading(true);
