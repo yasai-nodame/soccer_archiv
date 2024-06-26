@@ -68,7 +68,8 @@ const PremierLeague = ({ matches, loading }) => {
                 </div>
             </div>
             <div className='pagination-container'>
-                <MatchesPage pageCount={totalPages} onPageChange={handlePageChange} forcePage={currentPage} />
+                {/* forcePageに指定する値はpageCountと同等かpageCount - 1の範囲内である必要がある。だからcurrentPageにtotalPages - 1の値を代入する。*/}
+            <MatchesPage pageCount={totalPages} onPageChange={handlePageChange} forcePage={currentPage >= totalPages ? totalPages -1 : currentPage}/>
             </div>
         </div>
     );
