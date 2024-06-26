@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-
 
 const firebaseConfig = {
     apiKey: process.env.VITE_REACT_APP_FIREBASE_API_KEY,
@@ -13,14 +12,26 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
+const auth = getAuth(app);
 const db = getFirestore(app);
+
+const authenticateAndFetchDocument = async () => {
+    try {
+        // ユーザーの認証
+        const userCredential = await signInWithEmailAndPassword(auth, process.env.VITE_REACT_APP_FIREBASE_MAIL, process.env.VITE_REACT_APP_FIREBASE_PASSWORD);
+        const user = userCredential.user;
+
+    } catch (error) {
+        console.log('エラー:', error);
+    }
+};
+
+authenticateAndFetchDocument();
 
 export { db, auth };
 
+// ホームとロゴを押すと、そのホームに戻るように設定する。
 
+// もしかしたらスピナーを透過したほうがいいのかも。
 
-
-// できれば、storageとdatabaseのルール認証を、個人だけにする。
-
-//最終的には、navbarで検索アイコン or　enterでfirebaseから検索文字に一致している、タイトルを取得するようにする。
+//  firebaseから、検索文字列を参照して、一致した情報を取得し表示させる。
