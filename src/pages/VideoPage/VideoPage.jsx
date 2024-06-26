@@ -114,7 +114,7 @@ const VideoPage = ({ relatedVideos, loading }) => {
                                         <p>{relatedVideo.category}</p>
                                     </div>
                                     <h3>{relatedVideo.title}</h3>
-                                    <Link to={`/video/${relatedVideo.id}`} style={{ cursor: 'pointer', color: 'white' }}>
+                                    <Link to={`/video/${relatedVideo.value}`} style={{ cursor: 'pointer', color: 'white' }}>
                                         詳細を見る
                                     </Link>
                                 </div>
