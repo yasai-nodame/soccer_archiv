@@ -30,7 +30,6 @@ authenticateAndFetchDocument();
 
 export { db, auth };
 
-// ホームとロゴを押すと、そのホームに戻るように設定する。
 
 // もしかしたらスピナーを透過したほうがいいのかも。
 
