@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './Home.css';
 import Navbar from '../../components/Navbar/Navbar';
 import MatchesPage from '../MatchesPage';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import spinner from '../../assets/spinner.gif';
 
 const Home = ({ matches, loading }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(9);
     const [totalPages, setTotalPages] = useState(0);
+    const navigate = useNavigate();
 
     // 最新5件取得
     const latestMatches = matches.slice(-5);
@@ -45,12 +46,17 @@ const Home = ({ matches, loading }) => {
     const offset = currentPage * itemsPerPage; 
     const currentMatches = matches.slice(offset, offset + itemsPerPage);
 
+    const handleHomeClick = () => {
+        setCurrentPage(0);
+        navigate('/');
+    }
+
     return (
         loading?<div className='standby-spinner'>
             <img src={spinner} alt="" />
         </div>:
         <div className='home'>
-            <Navbar />
+            <Navbar handleHomeClick={handleHomeClick}/>
             <div className='content'>
                 <div className='grid-container'>
                     {currentMatches.map((match) => (
