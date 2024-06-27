@@ -5,7 +5,7 @@ import search_icon from '../../assets/search_icon.svg';
 import { Link } from 'react-router-dom';
 
 
-const Navbar = ({ handlePremierLeagueClick, handleFacupPage }) => {
+const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
@@ -43,19 +43,19 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupPage }) => {
     return (
         <div className={`navbar ${isScrolled ? 'hide' : ''}`}>
             <div className="navbar-left">
-                <Link to='/'>
+                <Link to='/' onClick={handleHomeClick}>
                 <img src={logo} alt="" className="logo"/>
                 </Link>
                 {!isMobile && (
                     <ul>
                         <li style={{ color: '#fff' }}>
-                            <Link to="/" style={{color: '#fff', textDecoration: 'none'}}>ホーム</Link>
+                            <Link to="/" onClick={handleHomeClick} style={{color: '#fff', textDecoration: 'none'}}>ホーム</Link>
                         </li>
                         <li style={{ color: '#fff' }}>
                             <Link to="/premier-league-page" onClick={handlePremierLeagueClick} style={{color: '#fff', textDecoration: 'none'}}>プレミアリーグ</Link>
                         </li>
                         <li style={{ color: '#fff' }}>
-                            <Link to="/fa-cup-page" onClick={handleFacupPage} style={{color: '#fff', textDecoration: 'none'}}>FAカップ</Link>
+                            <Link to="/fa-cup-page" onClick={handleFacupClick} style={{color: '#fff', textDecoration: 'none'}}>FAカップ</Link>
                         </li>
                     </ul>
                 )}
