@@ -38,7 +38,7 @@ const FACup = ({ matches, loading }) => {
     const offset = currentPage * itemsPerPage;
     const currentMatches = fillterdMatches.slice(offset, offset + itemsPerPage);
 
-    const handleFacupPage = () => {
+    const handleFacupClick = () => {
         setCurrentPage(0);
         navigate('/fa-cup-page');
     }
@@ -48,7 +48,7 @@ const FACup = ({ matches, loading }) => {
             <img src={spinner} alt="" />
         </div>:
         <div className='facup-home'>
-            <Navbar handleFacupPage={handleFacupPage}/>
+            <Navbar handleFacupClick={handleFacupClick}/>
             <div className='facup-content'>
                 <h2 className='facup-title'>FAカップ</h2>
                 <div className='facup-grid-container'>
