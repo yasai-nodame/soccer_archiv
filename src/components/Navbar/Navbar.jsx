@@ -3,11 +3,15 @@ import './Navbar.css';
 import logo from '../../assets/logo.png';
 import search_icon from '../../assets/search_icon.svg';
 import { Link } from 'react-router-dom';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 
 const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -40,10 +44,37 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
         };
     }, []);
 
+    const handleSearch = async() => {
+        try {
+            const searchTermLower = searchTerm.toLowerCase();
+
+            const q = query(
+                collection(db, 'matches'),
+                where('title', '>=', searchTermLower),
+                where('title', '<=', searchTermLower + '\uf8ff')
+            );
+
+            const querySnapshot = await getDocs(q);
+            console.log('querysnapshot:', querySnapshot);
+            const results = querySnapshot.docs.filter(doc => doc.data().title.toLowerCase().includes(searchTermLower)).map(doc => doc.data());
+
+            setSearchResults(results);
+            console.log('results:', results);
+        } catch (error) {
+            console.error('検索エラー:', error);
+        }
+    }
+
+    const handleKeyDown = (e) => {
+        if(e.key === 'Enter') {
+            handleSearch();
+        }
+    }
+
     return (
         <div className={`navbar ${isScrolled ? 'hide' : ''}`}>
             <div className="navbar-left">
-                <Link to='/' onClick={handleHomeClick}>
+                <Link to='/' onClick={handleHomeClick}> {/* navbarのロゴもhomeのトップページも戻れるようにする */}
                 <img src={logo} alt="" className="logo"/>
                 </Link>
                 {!isMobile && (
@@ -61,8 +92,27 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
                 )}
             </div>
             <div className="search-box">
-                <input type="text" placeholder="Search..."></input>
-                <img src={search_icon} alt="" className='icons' />
+                <input 
+                    type="text" 
+                    placeholder="Search..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                />
+                <img 
+                    src={search_icon} 
+                    alt="" 
+                    className='icons'
+                    onClick={handleSearch}
+                />
+            </div>
+            {/* このdivタグのせいで、searchアイコンが左に寄せられた。 */}
+            <div className="search-results">
+                {searchResults.map((result, index) => (
+                    <div key={index}>
+                        <p>{result.title}</p>
+                    </div>
+                ))}
             </div>
         </div>
     )
