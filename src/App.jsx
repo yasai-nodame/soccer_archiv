@@ -8,6 +8,7 @@ import FACup from './components/FACup'
 import { db } from './firebase'
 import { collection, getDocs } from 'firebase/firestore'
 import { getDownloadURL, getStorage, ref } from 'firebase/storage'
+import SearchResults from './components/SearchResults'
 
 
 const initialMatches = [
@@ -57,6 +58,7 @@ const App = () => {
         <Route path='/video/:id' element={<VideoPage relatedVideos={matches_value} loading={loading}/>} />
         <Route path='/premier-league-page' element={<PremierLeague matches={matches_value} loading={loading}/>} />
         <Route path='/fa-cup-page' element={<FACup matches={matches_value} loading={loading}/>} />
+        <Route path='/search-results-page' element={<SearchResults />} />
       </Routes>
     </div>
   );
