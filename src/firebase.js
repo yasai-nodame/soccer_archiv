@@ -31,6 +31,10 @@ authenticateAndFetchDocument();
 export { db, auth };
 
 
-// もしかしたらスピナーを透過したほうがいいのかも。
+// もしかしたらスピナーを透過したほうがいいのかも。 
 
 //  firebaseから、検索文字列を参照して、一致した情報を取得し表示させる。
+
+// ホームを更新したときに、バックグラウンドページを黒色にする
+
+// /functions/index.js　のalogoliaとfirebaseの情報を .envに格納させる。
