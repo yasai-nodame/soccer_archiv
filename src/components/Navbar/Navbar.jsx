@@ -2,9 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import logo from '../../assets/logo.png';
 import search_icon from '../../assets/search_icon.svg';
-import { Link } from 'react-router-dom';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { Link, useNavigate } from 'react-router-dom';
+import algoliasearch from 'algoliasearch/lite'; 
+
+const ALGOLIA_APP_ID = process.env.VITE_REACT_APP_ALGOLIA_APP_ID;
+const ALGOLIA_SEARCH_KEY = process.env.VITE_REACT_APP_ALGOLIA_SEARCH_KEY;
+const ALGOLIA_INDEX_NAME = process.env.VITE_REACT_APP_ALGOLIA_INDEX_NAME;
+
+const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY);
+const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
 
 const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick }) => {
@@ -12,6 +18,7 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
     const [isMobile, setIsMobile] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -35,7 +42,6 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
         
-        // resizeの初期時のみ実行 resize初期値を取得
         handleResize(); 
         
         return () => {
@@ -46,20 +52,11 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
 
     const handleSearch = async() => {
         try {
-            const searchTermLower = searchTerm.toLowerCase();
-
-            const q = query(
-                collection(db, 'matches'),
-                where('title', '>=', searchTermLower),
-                where('title', '<=', searchTermLower + '\uf8ff')
-            );
-
-            const querySnapshot = await getDocs(q);
-            console.log('querysnapshot:', querySnapshot);
-            const results = querySnapshot.docs.filter(doc => doc.data().title.toLowerCase().includes(searchTermLower)).map(doc => doc.data());
-
-            setSearchResults(results);
-            console.log('results:', results);
+            const { hits } = await index.search(searchTerm);
+            setSearchResults(hits);
+            if (searchResults.length > 0) {
+                navigate('/search-results-page', {state: {searchResults: searchResults}});
+            }
         } catch (error) {
             console.error('検索エラー:', error);
         }
@@ -74,7 +71,7 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
     return (
         <div className={`navbar ${isScrolled ? 'hide' : ''}`}>
             <div className="navbar-left">
-                <Link to='/' onClick={handleHomeClick}> {/* navbarのロゴもhomeのトップページも戻れるようにする */}
+                <Link to='/' onClick={handleHomeClick}> 
                 <img src={logo} alt="" className="logo"/>
                 </Link>
                 {!isMobile && (
@@ -105,14 +102,6 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
                     className='icons'
                     onClick={handleSearch}
                 />
-            </div>
-            {/* このdivタグのせいで、searchアイコンが左に寄せられた。 */}
-            <div className="search-results">
-                {searchResults.map((result, index) => (
-                    <div key={index}>
-                        <p>{result.title}</p>
-                    </div>
-                ))}
             </div>
         </div>
     )
