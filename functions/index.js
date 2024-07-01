@@ -54,26 +54,11 @@ async function uploadDatatoAlgolia() {
   }
 }
 
-// Algoliaで検索を実行する関数
-async function searchAlgolia(query) {
-  try {
-    const response = await index.search(query);
-    return response.hits;
-  } catch (error) {
-    console.error('Algoliaでの検索エラー', error);
-    return [];
-  }
-}
+
 
 // データをAlgoliaにアップロードする
 uploadDatatoAlgolia();
 
-// Algoliaで検索を実行する例
-searchAlgolia('チェルシー').then(results => {
-  console.log('Algoliaでの検索結果', results);
-}).catch(error => {
-  console.error('Algoliaでの検索エラー', error);
-});
 
 // データの取得
 getFirebaseData().then(data => {
