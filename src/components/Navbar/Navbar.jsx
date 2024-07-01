@@ -52,7 +52,7 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
 
     const handleSearch = async() => {
         try {
-            const { hits } = await index.search(searchTerm);
+            const { hits } = await index.search(searchTerm); // {hits} 分割代入
             setSearchResults(hits);
             if (searchResults.length > 0) {
                 navigate('/search-results-page', {state: {searchResults: searchResults}});
