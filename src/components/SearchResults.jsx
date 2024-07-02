@@ -1,25 +1,58 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { getDownloadURL, getStorage, ref } from 'firebase/storage';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import spinner from '../assets/spinner.gif';
+import MatchesPage from '../pages/MatchesPage';
+import Navbar from './Navbar/Navbar';
+import './SearchResults.css';
 
-const SearchResults = () => {
+const SearchResults = ({ loading }) => {
     const location = useLocation();
     const { searchResults } = location.state || {}; // 遷移先に値を渡した状態オブジェクトを取得 location.state なかったら空のオブジェクトを渡す{} エラー回避
+    const [imageUrls, setImageUrls] = useState({});
 
-    // firebaseのstorageから　imgを取得
+    useEffect(() => {
+        const fetchImages = async() => {
+            const storage = getStorage();
+            const newImageUrls = {};
+
+            for (const result of searchResults) {  // forループ　searchResultsリストを定数resultにいれて　処理させていく
+                try {
+                    const imageRef = ref(storage, process.env.VITE_REACT_APP_IMAGE);
+                    const url = await getDownloadURL(imageRef);
+                    newImageUrls[result.id] = url;
+                } catch (error) {
+                    console.error('画像の取得に失敗しました。', error);
+                }
+            }
+            setImageUrls(newImageUrls);
+        }
+        if (searchResults) { //searchResultsに要素があったら実行する。
+            fetchImages();
+        }
+    }, [searchResults]); // 依存配列をsearchResultsに設定　searchResultsが更新されると、実行される。
     
     return (
-        <div>
-            <h2>検索結果</h2>
-            <ul>
-                {searchResults.map((result) => (
-                    <li key={result.id}>
-                        <p>{result.title}</p>
-                        <p>{result.category}</p>
-                        <p>{result.date}</p>
-                        {/* 他の必要な情報を表示 */}
-                    </li>
-                ))}
-            </ul>
+        loading? <div className='standby-spinner'> {/* firebaseのstorageからimgを反映させるまで待機も追加 */}
+            <img src={spinner} alt="" />
+        </div>:
+        <div className='search-home'>
+            <Navbar/>
+            <div className='search-content'>
+                <h2 className='search-title'>検索結果</h2>
+                <div className='search-container'>
+                    {searchResults.length > 0 ? searchResults.map((result) => (
+                        <Link key={result.id} to={`/video/${result.id}`} className='search-grid-item' data-date={result.date}>
+                            {imageUrls[result.id] && <img src={imageUrls[result.id]} alt="" />}
+                            <h3>{result.category}</h3>
+                            <h2>{result.title}</h2>
+                        </Link>
+                    )) : <p> に一致した試合がありませんでした。</p> }
+                </div> {/* 関連動画もランダムで配置 */}
+            </div>
+            <div className='pagination-container'>
+                {/* ページネーション配置 */}
+            </div>
         </div>
     );
 }
