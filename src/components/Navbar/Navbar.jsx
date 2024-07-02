@@ -55,7 +55,7 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
             const { hits } = await index.search(searchTerm); // {hits} 分割代入
             setSearchResults(hits);
             if (searchResults.length > 0) {
-                navigate('/search-results-page', {state: {searchResults: searchResults}});
+                navigate('/search-results-page', {state: {searchResults: searchResults, searchTerm: searchTerm}});
             }
         } catch (error) {
             console.error('検索エラー:', error);
