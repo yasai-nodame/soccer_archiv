@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar/Navbar'; //navbarをインポートし�
 import { Link, useNavigate } from 'react-router-dom';
 import './PremierLeague.css';
 import MatchesPage from '../pages/MatchesPage';
-import spinner from '../assets/spinner.gif'
+import spinner from '../assets/spinner.gif';
 
 const PremierLeague = ({ matches, loading }) => {
     const [currentPage, setCurrentPage] = useState(0);
