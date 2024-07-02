@@ -40,11 +40,11 @@ const App = () => {
         const matchesData = querySnapshot.docs.map(doc => ({
           ...doc.data(),
           thumbnail: imageUrl
-      })).sort((a, b) => a.id - b.id); // matchesのid要素を2つとる。比較するため。 正の数ならaはbの後ろにソート　負の数ならaはbの前にソート　例) 1-3=-2　1が前にソート
+      })).sort((a, b) => a.id - b.id); 
       setMatches_value(matchesData);
       } catch (error) {
         console.error("Error fetcing matches:", error);
-      } finally { //finallyは、例外が発生してもしなくても、必ず実行されるコード
+      } finally { 
         setLoading(false);
       }
     };
@@ -58,7 +58,7 @@ const App = () => {
         <Route path='/video/:id' element={<VideoPage relatedVideos={matches_value} loading={loading}/>} />
         <Route path='/premier-league-page' element={<PremierLeague matches={matches_value} loading={loading}/>} />
         <Route path='/fa-cup-page' element={<FACup matches={matches_value} loading={loading}/>} />
-        <Route path='/search-results-page' element={<SearchResults />} />
+        <Route path='/search-results-page' element={<SearchResults loading={loading}/>} />
       </Routes>
     </div>
   );
