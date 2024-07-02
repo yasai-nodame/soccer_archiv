@@ -1,0 +1,24 @@
+.search-home { 
+    position: relative;
+    background-color: #1c1818;
+    min-height: 100vh;
+    padding-bottom: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+.search-grid-item {
+    position: relative;
+    margin-top: 80px;
+    padding: 30px 8px;
+    text-align: center;
+    color: white;
+    text-decoration-line: none;
+}

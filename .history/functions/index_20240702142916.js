@@ -1,4 +1,12 @@
-{
+const admin = require('firebase-admin');
+const algoliasearch = require('algoliasearch');
+require('dotenv').config();
+console.log('algolia_app_id:', process.env.ALGOLIA_APP_ID);
+console.log('algolia_search:', process.env.ALGOLIA_SEARCH_KEY);
+console.log('algolia_index_name:', process.env.ALGOLIA_INDEX_NAME);
+
+// Firebaseのサービスアカウント情報
+const serviceAccount = {
   "type": "service_account",
   "project_id": "soccer-archive",
   "private_key_id": "75858a0d22e83b887695be30e3a56623e4d33b9f",
@@ -10,4 +18,57 @@
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-7bezh%40soccer-archive.iam.gserviceaccount.com",
   "universe_domain": "googleapis.com"
+};
+
+// Firebaseの初期化 credentialにサービスアカウント情報を使用する
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+// Algoliaの設定
+const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID; // アプリケーションID
+const ALGOLIA_SEARCH_KEY = process.env.ALGOLIA_SEARCH_KEY; //検索用APIキー
+const ALGOLIA_INDEX_NAME = process.env.ALGOLIA_INDEX_NAME; //インデックス名
+
+const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY);
+const index = client.initIndex(ALGOLIA_INDEX_NAME);
+
+// Firebaseからデータを取得する関数
+async function getFirebaseData() {
+  const snapshot = await admin.firestore().collection('matches').get();
+  const documents = snapshot.docs.map(doc => ({
+    objectID: doc.id, // ドキュメントでユーザーが設定したidとは別物。 firebaseが自動的に割り当てるドキュメントの固有識別子。
+    ...doc.data()
+  }));
+  return documents;
 }
+
+// Algoliaにデータをアップロードする関数
+async function uploadDatatoAlgolia() {
+  try {
+    const firebaseData = await getFirebaseData();
+    const objectsToUpload = firebaseData.map(doc => ({
+        objectID: doc.id,
+        ...doc
+    }));
+    const algoliaResponse = await index.saveObjects(objectsToUpload);
+    console.log('Algoliaへのデータアップロードが成功しました', algoliaResponse);
+  } catch (error) {
+    console.error('Algoliaへのデータアップロードに失敗しました', error);
+  }
+}
+
+
+
+// データをAlgoliaにアップロードする
+uploadDatatoAlgolia();
+
+
+// データの取得
+getFirebaseData().then(data => {
+  console.log('Firebaseのデータ', data);
+}).catch(error => {
+  console.error('Firebaseのデータ取得エラー', error);
+});
+
+

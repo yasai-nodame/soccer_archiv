@@ -1,0 +1,14 @@
+.search-home {
+    position: relative;
+    background-color: #1c1818;
+    min-height: 100vh;
+}
+
+
+
+
+
+.search-grid-item img {
+    width: 180px;
+    height: auto;
+}
