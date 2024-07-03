@@ -1,39 +1,23 @@
-import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import spinner from '../assets/spinner.gif';
 import MatchesPage from '../pages/MatchesPage';
 import Navbar from './Navbar/Navbar';
 import './SearchResults.css';
+import soccer_ball from '../assets/soccer_ball.jpg';
 
-const SearchResults = ({ loading }) => {
+const SearchResults = () => {
     const location = useLocation();
-    const { searchResults } = location.state || {}; // 遷移先に値を渡した状態オブジェクトを取得 location.state なかったら空のオブジェクトを渡す{} エラー回避
-    const [imageUrls, setImageUrls] = useState({});
+    const { searchResults, searchTerm } = location.state || {}; // 遷移先に値を渡した状態オブジェクトを取得 location.state なかったら空のオブジェクトを渡す{} エラー回避
+    const [loading, setLoading] = useState(true);
+    
 
     useEffect(() => {
-        const fetchImages = async() => {
-            const storage = getStorage();
-            const newImageUrls = {};
+        setLoading(false);
+    }, [searchResults]);
 
-            for (const result of searchResults) {  // forループ　searchResultsリストを定数resultにいれて　処理させていく
-                try {
-                    const imageRef = ref(storage, process.env.VITE_REACT_APP_IMAGE);
-                    const url = await getDownloadURL(imageRef);
-                    newImageUrls[result.id] = url;
-                } catch (error) {
-                    console.error('画像の取得に失敗しました。', error);
-                }
-            }
-            setImageUrls(newImageUrls);
-        }
-        if (searchResults) { //searchResultsに要素があったら実行する。
-            fetchImages();
-        }
-    }, [searchResults]); // 依存配列をsearchResultsに設定　searchResultsが更新されると、実行される。
-    
     return (
-        loading? <div className='standby-spinner'> {/* firebaseのstorageからimgを反映させるまで待機も追加 */}
+        loading? <div className='standby-spinner'> 
             <img src={spinner} alt="" />
         </div>:
         <div className='search-home'>
@@ -41,13 +25,13 @@ const SearchResults = ({ loading }) => {
             <div className='search-content'>
                 <h2 className='search-title'>検索結果</h2>
                 <div className='search-container'>
-                    {searchResults.length > 0 ? searchResults.map((result) => (
+                    {searchResults && searchResults.length > 0 ? searchResults.map((result) => (
                         <Link key={result.id} to={`/video/${result.id}`} className='search-grid-item' data-date={result.date}>
-                            {imageUrls[result.id] && <img src={imageUrls[result.id]} alt="" />}
+                            <img src={soccer_ball} alt="" />
                             <h3>{result.category}</h3>
                             <h2>{result.title}</h2>
                         </Link>
-                    )) : <p> に一致した試合がありませんでした。</p> }
+                    )) : <p> 「{searchTerm}」に一致した試合がありませんでした。</p> }
                 </div> {/* 関連動画もランダムで配置 */}
             </div>
             <div className='pagination-container'>
