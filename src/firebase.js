@@ -32,5 +32,3 @@ export { db, auth };
 
 
 // SearchResultsにページネーションを追加する
-
-// SearchResultsにランダムの関連動画を追加する
