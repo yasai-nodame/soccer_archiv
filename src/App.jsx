@@ -14,7 +14,7 @@ import SearchResults from './components/SearchResults'
 const initialMatches = [
   {id:1, date: '2024-6-11', category: 'プレミアリーグ', title: 'チェルシー×アーセナル', matchday: '第1節', thumbnail: soccer},
   {id:2, date: '2024-6-11', category: 'プレミアリーグ', title: 'フラム×リヴァプール', matchday: '第1節', thumbnail: soccer},
-  {id:3, date: '2024-6-12', category: 'プレミアリーグ', title: 'マンC×エヴァートン', matchday: '第1節', thumbnail:soccer},
+  {id:3, date: '2024-6-12', category: 'プレミアリーグ', title: 'マンC×エバートン', matchday: '第1節', thumbnail:soccer},
   {id:4, date: '2024-6-12', category: 'FAカップ', title: 'レスターシティ×トッテナム', thumbnail:soccer},
   {id:5, date: '2024-6-13', category: 'プレミアリーグ', title: 'ウルブス×マンU', matchday: '第1節', thumbnail:soccer},
   {id:6, date: '2024-6-13', category: 'FAカップ', title: 'ボーンマス×ノッティンガムフォレスト', thumbnail:soccer},
@@ -30,16 +30,11 @@ const App = () => {
   useEffect(() => {
     const fetchMatches = async() => {
       try {
-        const storage = getStorage();
-        const imageRef = ref(storage, process.env.VITE_REACT_APP_IMAGE);
-        const imageUrl = await getDownloadURL(imageRef);
-
-
         const matchesCollectionRef = collection(db, 'matches');
         const querySnapshot = await getDocs(matchesCollectionRef);
         const matchesData = querySnapshot.docs.map(doc => ({
           ...doc.data(),
-          thumbnail: imageUrl
+          thumbnail: soccer
       })).sort((a, b) => a.id - b.id); 
       setMatches_value(matchesData);
       } catch (error) {
@@ -58,7 +53,7 @@ const App = () => {
         <Route path='/video/:id' element={<VideoPage relatedVideos={matches_value} loading={loading}/>} />
         <Route path='/premier-league-page' element={<PremierLeague matches={matches_value} loading={loading}/>} />
         <Route path='/fa-cup-page' element={<FACup matches={matches_value} loading={loading}/>} />
-        <Route path='/search-results-page' element={<SearchResults loading={loading}/>} />
+        <Route path='/search-results-page' element={<SearchResults/>} />
       </Routes>
     </div>
   );
