@@ -25,14 +25,15 @@ const SearchResults = () => {
             <div className='search-content'>
                 <h2 className='search-title'>検索結果</h2>
                 <div className='search-container'>
-                    {searchResults && searchResults.length > 0 ? searchResults.map((result) => (
+                    {/* SearchResultsがtrue且つSearchResultsの要素数が0以上の場合マッピングする。 */}
+                    {searchResults && searchResults.length > 0 ? searchResults.map((result) => ( 
                         <Link key={result.id} to={`/video/${result.id}`} className='search-grid-item' data-date={result.date}>
                             <img src={soccer_ball} alt="" />
                             <h3>{result.category}</h3>
                             <h2>{result.title}</h2>
                         </Link>
                     )) : <p> 「{searchTerm}」に一致した試合がありませんでした。</p> }
-                </div> {/* 関連動画もランダムで配置 */}
+                </div>
             </div>
             <div className='pagination-container'>
                 {/* ページネーション配置 */}
