@@ -5,6 +5,7 @@ import search_icon from '../../assets/search_icon.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import algoliasearch from 'algoliasearch/lite'; 
 
+// algolia情報
 const ALGOLIA_APP_ID = process.env.VITE_REACT_APP_ALGOLIA_APP_ID;
 const ALGOLIA_SEARCH_KEY = process.env.VITE_REACT_APP_ALGOLIA_SEARCH_KEY;
 const ALGOLIA_INDEX_NAME = process.env.VITE_REACT_APP_ALGOLIA_INDEX_NAME;
@@ -17,7 +18,6 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -53,10 +53,7 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
     const handleSearch = async() => {
         try {
             const { hits } = await index.search(searchTerm); // {hits} 分割代入
-            setSearchResults(hits);
-            if (searchResults.length > 0) {
-                navigate('/search-results-page', {state: {searchResults: searchResults, searchTerm: searchTerm}});
-            }
+            navigate('/search-results-page', {state: {searchResults: hits, searchTerm: searchTerm}});
         } catch (error) {
             console.error('検索エラー:', error);
         }
