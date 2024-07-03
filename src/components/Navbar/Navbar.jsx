@@ -20,6 +20,7 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
+    // ページサイズによるnavbar表示形式変更
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.pageYOffset;
@@ -50,6 +51,7 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
         };
     }, []);
 
+    // 遷移先に検索ワードを渡す処理
     const handleSearch = async() => {
         try {
             const { hits } = await index.search(searchTerm); // {hits} 分割代入
@@ -59,6 +61,7 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
         }
     }
 
+    // Enterキーを押した際のイベント
     const handleKeyDown = (e) => {
         if(e.key === 'Enter') {
             handleSearch();
@@ -71,7 +74,8 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
                 <Link to='/' onClick={handleHomeClick}> 
                 <img src={logo} alt="" className="logo"/>
                 </Link>
-                {!isMobile && (
+                {/* isMobileがfalseの場合に右辺の()を処理する。 */}
+                {!isMobile && ( 
                     <ul>
                         <li style={{ color: '#fff' }}>
                             <Link to="/" onClick={handleHomeClick} style={{color: '#fff', textDecoration: 'none'}}>ホーム</Link>
