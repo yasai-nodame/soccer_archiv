@@ -31,4 +31,4 @@ authenticateAndFetchDocument();
 export { db, auth };
 
 
-// SearchResultsにページネーションを追加する
+
