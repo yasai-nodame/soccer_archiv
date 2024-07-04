@@ -55,7 +55,8 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick })
     const handleSearch = async() => {
         try {
             const { hits } = await index.search(searchTerm); // {hits} 分割代入
-            navigate('/search-results-page', {state: {searchResults: hits, searchTerm: searchTerm}});
+            console.log(hits);
+            navigate('/search-results-page', {state: {searchResults: hits, searchTerm: searchTerm}}); // /search-results-pageに値を投げる
         } catch (error) {
             console.error('検索エラー:', error);
         }
