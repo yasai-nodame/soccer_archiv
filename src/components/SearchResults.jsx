@@ -5,16 +5,23 @@ import Navbar from './Navbar/Navbar';
 import './SearchResults.css';
 import soccer_ball from '../assets/soccer_ball.jpg';
 import MatchesPage from '../pages/MatchesPage';
-import { update } from 'firebase/database';
 
 const SearchResults = () => {
     const location = useLocation();
-    const { searchResults, searchTerm } = location.state || {}; // 遷移先に値を渡した状態オブジェクトを取得 location.state なかったら空のオブジェクトを渡す{} エラー回避
+    const [searchResults, setSearchResults] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(0);
     const [itemPerPage, setItemsPerPage] = useState(9);
     const [totalPages, setTotalPages] = useState(0);
     
+    useEffect(() => {
+        if (location.state) {
+            setSearchResults(location.state.searchResults || []); // Navbarのstateの値 searchResults(検索結果の要素リスト取得)
+            setSearchTerm(location.state.searchTerm || ''); // Navbarで検索ワードを入力した値 searchTerm(検索ワードを取得)
+        }
+        setLoading(false);
+    }, [location.state]);
 
     useEffect(() => {
         setLoading(false);
