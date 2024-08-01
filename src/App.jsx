@@ -54,7 +54,7 @@ const App = () => {
         <Route path='/video/:id' element={<VideoPage relatedVideos={matches_value} loading={loading}/>} />
         <Route path='/premier-league-page' element={<PremierLeague matches={matches_value} loading={loading}/>} />
         <Route path='/fa-cup-page' element={<FACup matches={matches_value} loading={loading}/>} />
-        <Route path='/commyunity-shield' element={<CommunityShield matches={matches_value} loading={loading}/>}/>
+        <Route path='/community-shield-page' element={<CommunityShield matches={matches_value} loading={loading}/>} />
         <Route path='/search-results-page' element={<SearchResults/>} />
       </Routes>
     </div>
