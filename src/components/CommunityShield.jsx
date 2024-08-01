@@ -13,7 +13,7 @@ const CommunityShield = ({matches, loading}) => {
 
     const handlePageChange = ({ selected }) => {
         setCurrentPage(selected);
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0);あ
     }
     useEffect (() => {
         const updateItemsPerPage = () => {
