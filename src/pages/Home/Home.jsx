@@ -12,7 +12,9 @@ const Home = ({ matches, loading }) => {
     const navigate = useNavigate();
 
     // 最新5件取得
-    const latestMatches = matches.slice(-5);
+    const latestMatches = [...matches] // matches配列をコピーして新しい配列として扱う。
+        .sort((a, b) => new Date(b.date) - new Date(a.date)) // sortメソッドを使って　dateを降順にsortする。 年月日がミリ秒単位に変化されて計算される。例えば、2024-10-2なら1717228800000
+        .slice(0, 5); // sliceを使って、最新の5件を取得。
 
     // ページが変更されたときのハンドラー
     const handlePageChange = ({ selected }) => {
