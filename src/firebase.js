@@ -31,4 +31,3 @@ authenticateAndFetchDocument();
 export { db, auth };
 
 
-// なぜかコミュニティシールドのborder-leftの幅が、均等にならない。
