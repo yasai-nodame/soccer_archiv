@@ -14,7 +14,7 @@ const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY);
 const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
 
-const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick, handleCommunityClick }) => {
+const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick, handleCommunityClick, handleLaligaClick}) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
@@ -84,6 +84,9 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick, h
                         </li>
                         <li style={{ color: '#fff' }}>
                             <Link to="/premier-league-page" onClick={handlePremierLeagueClick} style={{color: '#fff', textDecoration: 'none'}}>プレミアリーグ</Link>
+                        </li>
+                        <li style={{ color: '#fff'}}>
+                            <Link to='/laliga-page' onClick={handleLaligaClick} style={{color: '#fff', textDecoration: 'none'}}>ラリーガ</Link>
                         </li>
                         <li style={{ color: '#fff' }}>
                             <Link to="/fa-cup-page" onClick={handleFacupClick} style={{color: '#fff', textDecoration: 'none'}}>FAカップ</Link>

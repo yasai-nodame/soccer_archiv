@@ -5,6 +5,7 @@ import VideoPage from './pages/VideoPage/VideoPage'
 import PremierLeague from './components/PremierLeague'
 import soccer from './assets/soccer_ball.jpg'
 import FACup from './components/FACup'
+import Laliga from './components/Laliga'
 import { db } from './firebase'
 import { collection, getDocs } from 'firebase/firestore'
 import { getDownloadURL, getStorage, ref } from 'firebase/storage'
@@ -52,7 +53,8 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home matches={matches_value} loading={loading}/>}/>
         <Route path='/video/:id' element={<VideoPage relatedVideos={matches_value} loading={loading}/>} />
-        <Route path='/premier-league-page' element={<PremierLeague matches={matches_value} loading={loading}/>} />
+        <Route path='/premier-league-page' element={<PremierLeague matches={matches_value} loading={loading} />} />
+        <Route path='/laliga-page' element={<Laliga matches={matches_value} loading={loading} />} />
         <Route path='/fa-cup-page' element={<FACup matches={matches_value} loading={loading}/>} />
         <Route path='/community-shield-page' element={<CommunityShield matches={matches_value} loading={loading}/>} />
         <Route path='/search-results-page' element={<SearchResults/>} />
