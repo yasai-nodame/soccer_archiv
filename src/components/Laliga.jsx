@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
 import spinner from '../assets/spinner.gif';
 import MatchesPage from '../pages/MatchesPage';
+import './Laliga.css';
 
 const Laliga = ({ matches, loading }) => {
     const [currentPage, setCurrentPage] = useState(0);
