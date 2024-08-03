@@ -8,7 +8,6 @@ import FACup from './components/FACup'
 import Laliga from './components/Laliga'
 import { db } from './firebase'
 import { collection, getDocs } from 'firebase/firestore'
-import { getDownloadURL, getStorage, ref } from 'firebase/storage'
 import SearchResults from './components/SearchResults'
 import CommunityShield from './components/CommunityShield'
 
