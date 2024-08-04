@@ -59,6 +59,8 @@
     cursor: pointer;
 }
 
+/* ::beforeは、要素の「前」つまり、要素の上（この場合は（？））に装飾するもの。トリガーされるまでは ::beforeを表示とかいうものではない。*/
+/*例えば、ボタンの下にテキストを表示や、デザインを追加したい場合は、::afterで装飾。　ボタンの上にテキストやデザインを追加したい場合は、 ::beforeで装飾。*/
 .premier-grid-item::before {
     content: "";
     position: absolute;
@@ -72,6 +74,7 @@
     z-index: 1;
 }
 
+/* ::afterは、要素の「後」つまり、要素の下（この場合は（？））に装飾するもの。　::beforeと::afterは同時に表示されるもので、トリガーされたら::afterを表示とかいうものではない。*/
 .premier-grid-item::after {
     content: attr(data-date);
     position: absolute;
