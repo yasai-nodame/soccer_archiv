@@ -30,4 +30,3 @@ authenticateAndFetchDocument();
 
 export { db, auth };
 
-
