@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import './VideoPage.css';
@@ -14,6 +14,12 @@ const VideoPage = ({ relatedVideos, loading }) => {
     const [currentVideo, setCurrentVideo] = useState(null);
     const [videosLoading, setVideosLoading] = useState(true); //loadingはページが開くまでの間で、videosLoadingは動画が開くまでの間スピナー（待機）画面
     const [matchDocument, setMatchDocument] = useState(null);
+
+
+    // videoを右クリックしても、何も表示されないようにする。
+    const handleContextMenu = (event) => {
+        event.preventDefault();
+    };
 
     const storage = getStorage();
 
@@ -86,7 +92,12 @@ const VideoPage = ({ relatedVideos, loading }) => {
                 <Navbar />
                 <div className='video-container'>
                     {currentVideo ? (
-                        <video key={currentVideo?.url} controls>
+                        /* 
+                        controlsList=nodownloadは、オプションのダウンロードボタン非表示にしてる。
+                        onContextMenu={handleContextMenu}は、video上で、右クリックしても反応しないようにしてる。
+                        disablePictureInPicutureは、オプションのピクチャインピクチャを非表示にしてる。
+                        */
+                        <video key={currentVideo?.url} controls controlsList='nodownload' onContextMenu={handleContextMenu} disablePictureInPicture>
                             <source src={currentVideo?.url} type='video/mp4' />
                             お使いのブラウザはvideoタグをサポートしていません
                         </video>
