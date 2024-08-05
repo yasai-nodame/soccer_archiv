@@ -11,6 +11,7 @@ import { collection, getDocs } from 'firebase/firestore'
 import SearchResults from './components/SearchResults'
 import CommunityShield from './components/CommunityShield'
 import CopaDelRey from './components/CopaDelRey'
+import Supercopa from './components/Supercopa'
 
 
 const initialMatches = [
@@ -57,6 +58,7 @@ const App = () => {
         <Route path='/laliga-page' element={<Laliga matches={matches_value} loading={loading} />} />
         <Route path='/fa-cup-page' element={<FACup matches={matches_value} loading={loading}/>} />
         <Route path='/copadelrey-page' element={<CopaDelRey matches={matches_value} loading={loading} />} />
+        <Route path='Supercopa-page' element={<Supercopa matches={matches_value} loading={loading} />} />
         <Route path='/community-shield-page' element={<CommunityShield matches={matches_value} loading={loading}/>} />
         <Route path='/search-results-page' element={<SearchResults/>} />
       </Routes>
