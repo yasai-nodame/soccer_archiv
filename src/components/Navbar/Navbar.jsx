@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
-import logo from '../../assets/logo.png';
+import soccer_logo from '../../assets/soccer.png';
 import search_icon from '../../assets/search_icon.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import algoliasearch from 'algoliasearch/lite'; 
@@ -74,7 +74,7 @@ const Navbar = ({ handlePremierLeagueClick, handleFacupClick, handleHomeClick, h
         <div className={`navbar ${isScrolled ? 'hide' : ''}`}>
             <div className="navbar-left">
                 <Link to='/' onClick={handleHomeClick}> 
-                <img src={logo} alt="" className="logo"/>
+                <img src={soccer_logo} alt="" className="logo"/>
                 </Link>
                 {/* isMobileがfalseの場合に右辺の()を処理する。 */}
                 {!isMobile && ( 
