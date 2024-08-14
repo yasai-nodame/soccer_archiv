@@ -1,0 +1,119 @@
+.laliga-home {
+    position: relative;
+    background-color: #1c1818;
+    min-height: 100vh;
+    padding-bottom: 100px;
+}
+
+.laliga-content {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    width: calc(100% - 300px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.laliga-title {
+    background-color: #3a3535;
+    padding : 10px;
+    margin-top: 80px;
+    color: white;
+    border-radius: 5px;
+}
+
+.laliga-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    max-width: 1000px;
+}
+
+.laliga-grid-container p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px -120px;
+    margin-top: 50px;
+    max-width: 800px;
+    background-color: #2e2b2b;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.laliga-grid-item {
+    position: relative;
+    margin-top: 80px;
+    padding: 30px 40px;
+    text-align: center;
+    color: white;
+    text-decoration-line: none;
+    cursor: pointer;
+}
+
+.laliga-grid-item::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    border-top: 2px solid #0f0d0d;
+    border-left: 2px solid #0f0d0d;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.laliga-grid-item::after {
+    content: attr(data-date);
+    position: absolute;
+    top: -30px;
+    left: 10px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 15px;
+    z-index: 2;
+}
+
+.laliga-grid-item img {
+    width: 180px;
+    height: auto;
+}
+
+.laliga-grid-item h3,
+.laliga-grid-item h2 {
+    font-size: 1em;
+}
+
+.laliga-grid-item:hover {
+    transform: translateY(-5px);
+}
+
+.standby-spinner {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.standby-spinner img {
+    width: 60px;
+}
+
+@media (max-width: 600px) {
+    .laliga-grid-container {
+        grid-template-columns: 1fr;
+    }
+    .laliga-content {
+        width: 100%;
+        float: none;
+        max-width: calc(100% - 40px)
+    }
+}
