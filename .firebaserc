@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "soccer-archive"
-  }
+    "default": "soccer-archive",
+    "production": "soccer-archive"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
