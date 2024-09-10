@@ -13,7 +13,7 @@ import SearchResults from './components/SearchResults'
 import CommunityShield from './components/CommunityShield'
 import CopaDelRey from './components/CopaDelRey'
 import Supercopa from './components/Supercopa'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'fffffff
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
 const App = () => {
   const [imageSrc, setImageSrc] = useState('');
